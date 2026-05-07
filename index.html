@@ -7,18 +7,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#f5f1ea; --surface:#ffffff; --card:#ffffff; --border:#e0d9cc;
-  --text:#1a1a1a; --text2:#444; --text3:#888;
-  --gold:#9a6f2a; --gold-dim:rgba(154,111,42,0.10); --gold-bdr:rgba(154,111,42,0.28);
-  --green:#276b42; --red:#b83232; --blue:#1e5fa8;
+  --bg:#f5f1ea;--surface:#ffffff;--card:#ffffff;--border:#e0d9cc;
+  --text:#1a1a1a;--text2:#444;--text3:#888;
+  --gold:#9a6f2a;--gold-dim:rgba(154,111,42,0.10);--gold-bdr:rgba(154,111,42,0.28);
+  --green:#276b42;--red:#b83232;--blue:#1e5fa8;
   --hero-g:linear-gradient(150deg,#f0ebe0 0%,#e8ddc8 50%,#f0ebe0 100%);
   --shadow:0 1px 6px rgba(0,0,0,0.07);
 }
-body.dark {
-  --bg:#0a0a0a; --surface:#111; --card:#1a1a1a; --border:#2a2a2a;
-  --text:#fff; --text2:#bbb; --text3:#777;
-  --gold:#c9a84c; --gold-dim:rgba(201,168,76,0.14); --gold-bdr:rgba(201,168,76,0.35);
-  --green:#4caf7d; --red:#d95f5f; --blue:#5b9bd5;
+body.dark{
+  --bg:#0a0a0a;--surface:#111;--card:#1a1a1a;--border:#2a2a2a;
+  --text:#fff;--text2:#bbb;--text3:#777;
+  --gold:#c9a84c;--gold-dim:rgba(201,168,76,0.14);--gold-bdr:rgba(201,168,76,0.35);
+  --green:#4caf7d;--red:#d95f5f;--blue:#5b9bd5;
   --hero-g:linear-gradient(150deg,#0d0d0d 0%,#1a1200 55%,#0d0d0d 100%);
   --shadow:none;
 }
@@ -48,11 +48,17 @@ body.dark .hero::before{background:radial-gradient(circle,rgba(201,168,76,.09) 0
 .hero p{font-size:12.5px;color:var(--text3);max-width:290px;margin:0 auto 14px;line-height:1.6;}
 .open-btn{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;padding:9px 18px;border-radius:30px;border:none;cursor:pointer;transition:background .2s;}
 .open-btn.on{background:var(--gold);}
-.open-btn .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.85);animation:blink 1.4s infinite;}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.85);animation:blink 1.4s infinite;flex-shrink:0;}
 .open-btn.on .dot{animation:none;}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
 .filters{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 13px 0;transition:background .25s,border-color .25s;}
 .flabel{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.filter-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.filter-row .flabel{margin-bottom:0;flex-shrink:0;}
+/* Active filters pill display */
+.active-filters{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.af-pill{display:inline-flex;align-items:center;gap:5px;background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;}
+.af-pill button{background:none;border:none;color:var(--gold);cursor:pointer;font-size:12px;line-height:1;padding:0;margin-left:2px;}
 .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
 .cat-btn{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all .15s;box-shadow:var(--shadow);}
 .cat-btn:active{transform:scale(.95);}
@@ -64,6 +70,12 @@ body.dark .hero::before{background:radial-gradient(circle,rgba(201,168,76,.09) 0
 .day-row::-webkit-scrollbar{display:none;}
 .day-btn{flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 11px;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;color:var(--text3);cursor:pointer;transition:all .15s;}
 .day-btn.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
+/* Open now toggle as pill */
+.open-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.open-toggle{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;color:var(--text3);cursor:pointer;transition:all .15s;}
+.open-toggle.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
+.open-toggle .dot{background:var(--green);animation:blink 1.4s infinite;}
+.open-toggle.on .dot{background:var(--gold);animation:none;}
 .search-wrap{padding:0 0 13px;}
 .search{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 13px;font-family:'Open Sans',sans-serif;font-size:13px;color:var(--text);outline:none;transition:background .25s,border-color .2s,color .25s;}
 .search::placeholder{color:var(--text3);}
@@ -84,8 +96,10 @@ body.dark .hero::before{background:radial-gradient(circle,rgba(201,168,76,.09) 0
 .badge.open{background:rgba(39,107,66,.12);color:var(--green);border:1px solid rgba(39,107,66,.3);}
 .badge.closed{background:rgba(184,50,50,.10);color:var(--red);border:1px solid rgba(184,50,50,.25);}
 .badge.always{background:rgba(39,107,66,.12);color:var(--green);border:1px solid rgba(39,107,66,.3);}
+.badge.callhrs{background:rgba(100,100,100,.10);color:var(--text3);border:1px solid rgba(100,100,100,.2);}
 body.dark .badge.open,body.dark .badge.always{background:rgba(76,175,125,.13);color:#4caf7d;border-color:rgba(76,175,125,.3);}
 body.dark .badge.closed{background:rgba(217,95,95,.10);color:#d95f5f;border-color:rgba(217,95,95,.25);}
+body.dark .badge.callhrs{background:rgba(150,150,150,.10);color:#888;border-color:rgba(150,150,150,.2);}
 .cinfo{padding:0 13px 7px;display:flex;flex-direction:column;gap:4px;}
 .irow{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:var(--text2);line-height:1.4;}
 .irow .ico{font-size:12px;flex-shrink:0;margin-top:1px;}
@@ -128,11 +142,11 @@ body.dark .tag.im{color:#a0c4ff;background:rgba(160,196,255,.07);border-color:rg
 <header>
   <div class="logo">
     <div class="logo-mark">DR</div>
-    <div class="logo-words">Distant Relatives<small data-en="Resource Finder · DC" data-es="Buscador de Recursos · DC">Resource Finder · DC</small></div>
+    <div class="logo-words">Distant Relatives<small id="subTitle">Resource Finder · DC</small></div>
   </div>
   <div class="hdr-controls">
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌎 ES</button>
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
     <div class="hdr-badge" id="hdrBadge">…</div>
   </div>
 </header>
@@ -141,165 +155,375 @@ body.dark .tag.im{color:#a0c4ff;background:rgba(160,196,255,.07);border-color:rg
   <div class="em-left">
     <span style="font-size:17px">🚨</span>
     <div>
-      <div class="em-txt" data-en="Emergency?" data-es="¿Emergencia?">Emergency?</div>
-      <div class="em-sub" data-en="Crisis lines open 24 / 7" data-es="Líneas de crisis abiertas 24 / 7">Crisis lines open 24 / 7</div>
+      <div class="em-txt" id="emTxt">Emergency?</div>
+      <div class="em-sub" id="emSub">Crisis lines open 24 / 7</div>
     </div>
   </div>
-  <a class="em-btn" href="tel:911" data-en="Call 911" data-es="Llamar 911">Call 911</a>
+  <a class="em-btn" id="emBtn" href="tel:911">Call 911</a>
 </div>
 
 <div class="hero">
-  <div class="hero-eye" data-en="Feeding Our Relatives Program" data-es="Programa Alimentando a Nuestros Familiares">Feeding Our Relatives Program</div>
-  <h1 data-en="Find <em>Free</em> Help<br>Near You in DC" data-es="Encuentra <em>Ayuda Gratis</em><br>Cerca de Ti en DC">Find <em>Free</em> Help<br>Near You in DC</h1>
-  <p data-en="Tap what you need. We'll show you what's open." data-es="Toca lo que necesitas. Te mostraremos qué está abierto.">Tap what you need. We'll show you what's open.</p>
-  <button class="open-btn" id="openBtn" onclick="toggleOpen()">
-    <div class="dot"></div>
-    <span id="openTxt" data-en="Show Open Now" data-es="Mostrar Abierto Ahora">Show Open Now</span>
-  </button>
+  <div class="hero-eye" id="heroEye">Feeding Our Relatives Program</div>
+  <h1 id="heroH1">Find <em>Free</em> Help<br>Near You in DC</h1>
+  <p id="heroP">Tap what you need. We'll show you what's open.</p>
 </div>
 
 <div class="filters">
-  <div class="flabel" data-en="What do you need?" data-es="¿Qué necesitas?">What do you need?</div>
+  <div id="catLabel" class="flabel">What do you need?</div>
   <div class="cat-grid" id="catGrid"></div>
-  <div class="flabel" data-en="Which day?" data-es="¿Qué día?">Which day?</div>
-  <div class="day-row">
-    <button class="day-btn on" data-day="All" onclick="setDay(this)" data-en="Any Day"    data-es="Cualquier Día">Any Day</button>
-    <button class="day-btn"   data-day="Mon" onclick="setDay(this)" data-en="Monday"     data-es="Lunes">Monday</button>
-    <button class="day-btn"   data-day="Tue" onclick="setDay(this)" data-en="Tuesday"    data-es="Martes">Tuesday</button>
-    <button class="day-btn"   data-day="Wed" onclick="setDay(this)" data-en="Wednesday"  data-es="Miércoles">Wednesday</button>
-    <button class="day-btn"   data-day="Thu" onclick="setDay(this)" data-en="Thursday"   data-es="Jueves">Thursday</button>
-    <button class="day-btn"   data-day="Fri" onclick="setDay(this)" data-en="Friday"     data-es="Viernes">Friday</button>
-    <button class="day-btn"   data-day="Sat" onclick="setDay(this)" data-en="Saturday"   data-es="Sábado">Saturday</button>
-    <button class="day-btn"   data-day="Sun" onclick="setDay(this)" data-en="Sunday"     data-es="Domingo">Sunday</button>
+
+  <div id="dayLabel" class="flabel">Which day?</div>
+  <div class="day-row" id="dayRow"></div>
+
+  <div class="open-row">
+    <button class="open-toggle" id="openToggle" onclick="toggleOpen()">
+      <div class="dot"></div>
+      <span id="openTxt">Show Open Now</span>
+    </button>
   </div>
+
   <div class="search-wrap">
-    <input class="search" id="srch" type="text"
-      data-en-ph="🔍  Search by name or keyword…"
-      data-es-ph="🔍  Buscar por nombre o palabra clave…"
-      placeholder="🔍  Search by name or keyword…" oninput="render()">
+    <input class="search" id="srch" type="text" placeholder="🔍  Search by name or keyword…" oninput="render()">
   </div>
 </div>
 
 <div class="rbar">
-  <div class="rcount"><b id="rnum">–</b><span id="foundTxt" data-en=" resources found" data-es=" recursos encontrados"> resources found</span></div>
-  <button class="clr-btn" id="clrBtn" onclick="clearFilters()" data-en="✕ Clear" data-es="✕ Borrar">✕ Clear</button>
+  <div class="rcount"><b id="rnum">–</b><span id="foundTxt"> resources found</span></div>
+  <button class="clr-btn" id="clrBtn" onclick="clearAll()">✕ Clear all</button>
 </div>
 
-<div class="cards" id="cards"><div class="loading"><div class="spinner"></div><p data-en="Loading…" data-es="Cargando…">Loading…</p></div></div>
+<div class="cards" id="cards"><div class="loading"><div class="spinner"></div><p id="loadingTxt">Loading resources…</p></div></div>
 <div class="empty" id="empty">
   <div class="ei">🔍</div>
-  <h3 data-en="No results" data-es="Sin resultados">No results</h3>
-  <p data-en="Try a different day, category, or keyword." data-es="Prueba otro día, categoría o palabra clave.">Try a different day, category, or keyword.</p>
+  <h3 id="emptyH">No results</h3>
+  <p id="emptyP">Try removing a filter or changing your search.</p>
 </div>
 
 <div class="bnav">
-  <div class="ni on"><div class="nicon">🔍</div><div class="nlbl" data-en="Find Help" data-es="Buscar">Find Help</div></div>
-  <div class="ni"><div class="nicon">🗺️</div><div class="nlbl" data-en="Map" data-es="Mapa">Map</div></div>
-  <div class="ni"><div class="nicon">🚨</div><div class="nlbl" data-en="Emergency" data-es="Emergencia">Emergency</div></div>
-  <div class="ni"><div class="nicon">ℹ️</div><div class="nlbl" data-en="About" data-es="Acerca">About</div></div>
+  <div class="ni on"><div class="nicon">🔍</div><div class="nlbl" id="nav1">Find Help</div></div>
+  <div class="ni"><div class="nicon">🗺️</div><div class="nlbl" id="nav2">Map</div></div>
+  <div class="ni"><div class="nicon">🚨</div><div class="nlbl" id="nav3">Emergency</div></div>
+  <div class="ni"><div class="nicon">ℹ️</div><div class="nlbl" id="nav4">About</div></div>
 </div>
 
 <script>
+const DATA=[
+  {name:"Safety / Health Emergency",cats:["Emergency"],phone:"911",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"DBH Community Response Team",cats:["Emergency"],phone:"202-673-6495",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"Mental health crisis"},
+  {name:"Shelter Hotline",cats:["Emergency"],phone:"202-399-7093",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"Emergency shelter placement"},
+  {name:"Youth Shelter Hotline",cats:["Emergency"],phone:"202-547-7777",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Ages 24 & under",lang:"",site:"",notes:""},
+  {name:"Virginia Williams Family Resource Center",cats:["Family Shelter"],phone:"202-547-7777",addr:"920-A Rhode Island Ave NE",hours:"Mon–Fri 8:30am–4pm, Sat 8:30am–12pm",days:["Mon","Tue","Wed","Thu","Fri","Sat"],oH:8.5,cH:16,x:false,who:"Families",lang:"",site:"",notes:""},
+  {name:"Bread for the City – Southeast",cats:["Food","Clothing"],phone:"202-561-8587",addr:"1700 Marion Barry Ave SE",hours:"Mon–Thu 9am–5pm, Fri 9am–12pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:9,cH:17,x:false,who:"Everyone",lang:"",site:"",notes:"Email: info@breadforthecity.org"},
+  {name:"Bread for the City – Northwest",cats:["Food","Clothing"],phone:"202-265-2400",addr:"1525 7th Street NW",hours:"Mon–Thu 8:30am–5pm, Fri 8:30am–12pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:8.5,cH:17,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"Charlie's Place",cats:["Food"],phone:"202-232-2995",addr:"1830 Connecticut Ave NW",hours:"Tue–Fri 6:30–8:30am, Sat 8–10am",days:["Tue","Wed","Thu","Fri","Sat"],oH:6.5,cH:10,x:false,who:"Everyone",lang:"",site:"",notes:"Breakfast only"},
+  {name:"Thrive DC",cats:["Food","Laundry"],phone:"202-737-9311",addr:"1525 Newton St. NW",hours:"Mon–Fri (call for times)",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Everyone",lang:"Spanish",site:"",notes:"Inside St. Stephen's Church Basement"},
+  {name:"Martha's Table",cats:["Food"],phone:"202-328-6608",addr:"40 New Jersey Ave NW",hours:"Mon–Fri 5–5:30pm & 6–6:15pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:17,cH:18.25,x:false,who:"Everyone",lang:"",site:"",notes:"McKenna's Wagon locations"},
+  {name:"Miriam's Kitchen",cats:["Food","Supportive Services"],phone:"202-452-8926",addr:"2401 Virginia Ave NW",hours:"Mon–Fri: breakfast 6:30–8am, dinner 4:45–5:45pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:6.5,cH:17.75,x:false,who:"Everyone",lang:"",site:"miriamskitchen.org",notes:"Western Presbyterian Church Basement"},
+  {name:"N Street Village",cats:["Food","Laundry","Supportive Services","Health Clinic"],phone:"202-939-2060",addr:"1333 N Street NW",hours:"Mon–Fri: breakfast 7–8am, dinner 4–5pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:7,cH:17,x:false,who:"Women only",lang:"",site:"nstreetvillage.org",notes:""},
+  {name:"Sacred Heart Church",cats:["Food"],phone:"202-234-8000",addr:"16th St & Park St NW",hours:"Mon–Sat 4–5pm",days:["Mon","Tue","Wed","Thu","Fri","Sat"],oH:16,cH:17,x:false,who:"Everyone",lang:"Spanish",site:"",notes:"Se habla español"},
+  {name:"SOME (So Others Might Eat)",cats:["Clothing","Supportive Services"],phone:"202-797-8806",addr:"71 O St NW",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"Father McKenna Center",cats:["Laundry"],phone:"202-842-1112",addr:"900 N. Capitol St. NW",hours:"Mon–Fri 8–10am",days:["Mon","Tue","Wed","Thu","Fri"],oH:8,cH:10,x:false,who:"Men only",lang:"",site:"",notes:""},
+  {name:"Georgetown Ministry",cats:["Laundry","Supportive Services"],phone:"202-338-8301",addr:"1041 Wisconsin Ave NW",hours:"Mon–Fri & Sun 8am–4pm",days:["Mon","Tue","Wed","Thu","Fri","Sun"],oH:8,cH:16,x:false,who:"Everyone",lang:"",site:"georgetownministries.org",notes:""},
+  {name:"Everyone Home DC",cats:["Laundry"],phone:"202-544-0631",addr:"415 2nd St NE, 3rd Floor",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"everyonehomedc.org",notes:""},
+  {name:"Adams Place",cats:["Supportive Services"],phone:"202-812-5532",addr:"2210 Adams Place NE",hours:"Mon–Fri 7am–7pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:7,cH:19,x:false,who:"Everyone",lang:"",site:"",notes:"Lunch, showers, laundry, clothing, computer lab, SNAP help"},
+  {name:"Downtown Day Services Center",cats:["Supportive Services"],phone:"202-383-8810",addr:"1313 New York Ave NW",hours:"Mon–Fri 9am–5pm, Sat–Sun 10am–3pm",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:9,cH:17,x:false,who:"Everyone",lang:"",site:"downtowndc.org",notes:"Lunch, showers, laundry, clothing, computer, legal, healthcare"},
+  {name:"Friendship Place",cats:["Supportive Services","Health Clinic","Veterans","Jobs","Housing"],phone:"202-364-1419",addr:"4713 Wisconsin Ave NW",hours:"Call for hours — varies by program",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"friendshipplace.org",notes:"Multiple programs — call for the right one"},
+  {name:"H3 Project",cats:["Supportive Services"],phone:"1-833-439-6775",addr:"50 Massachusetts Ave NE",hours:"Daily 8am–10pm",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:8,cH:22,x:false,who:"Everyone",lang:"",site:"h3projectdc.org",notes:"Inside Union Station"},
+  {name:"Shirley's Place (EHDC)",cats:["Supportive Services"],phone:"202-544-0631 x202",addr:"1338 G Street SE",hours:"Daily 8am–4pm",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:8,cH:16,x:false,who:"Everyone",lang:"",site:"everyonehomedc.org",notes:""},
+  {name:"DC Victim Hotline",cats:["Domestic Violence & Trafficking"],phone:"1-844-432-2873",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"24/7 DV hotline"},
+  {name:"Acción Hotline",cats:["Domestic Violence & Trafficking"],phone:"866-962-5048",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"Spanish",site:"",notes:"Spanish only hotline"},
+  {name:"DC Rape Crisis Center",cats:["Domestic Violence & Trafficking"],phone:"202-333-7273",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"FAIR Girls",cats:["Domestic Violence & Trafficking"],phone:"1-855-900-3247",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"24/7 trafficking crisis hotline"},
+  {name:"US National Trafficking Hotline",cats:["Domestic Violence & Trafficking"],phone:"1-888-373-7888",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"Calvary Women's Services",cats:["Domestic Violence & Trafficking"],phone:"202-678-2341",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Single women only",lang:"",site:"",notes:"Shelter"},
+  {name:"Community Family Life Services",cats:["Domestic Violence & Trafficking"],phone:"202-347-0511",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:"Shelter"},
+  {name:"DC SAFE",cats:["Domestic Violence & Trafficking"],phone:"202-561-3000",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"Emergency shelter"},
+  {name:"District Alliance for Safe Housing",cats:["Domestic Violence & Trafficking"],phone:"202-462-3274",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:"Shelter"},
+  {name:"House of Ruth",cats:["Domestic Violence & Trafficking"],phone:"202-667-7001",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Women",lang:"",site:"",notes:"Shelter"},
+  {name:"My Sister's Place",cats:["Domestic Violence & Trafficking"],phone:"202-529-5991",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Women",lang:"",site:"",notes:"Shelter"},
+  {name:"DV Intake Center – NW Court",cats:["Domestic Violence & Trafficking"],phone:"202-879-0152",addr:"500 Indiana Ave NW, Room 4550",hours:"Mon–Fri 8:30am–4pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:8.5,cH:16,x:false,who:"Everyone",lang:"",site:"",notes:"Legal intake"},
+  {name:"DV Intake Center – SE Court",cats:["Domestic Violence & Trafficking"],phone:"202-561-3000",addr:"1320 Southern Ave SE, Room 311",hours:"Mon–Fri 8:30am–4pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:8.5,cH:16,x:false,who:"Everyone",lang:"",site:"",notes:"Legal intake"},
+  {name:"Ayuda",cats:["Special Services","Immigration Legal"],phone:"202-387-4848",addr:"1990 K St NW, Suite 500",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"Spanish",site:"ayuda.com",notes:"Immigration, legal, Spanish services"},
+  {name:"DAWN",cats:["Special Services"],phone:"202-559-5366 (TTY)",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Deaf / Hard of Hearing",lang:"",site:"",notes:""},
+  {name:"DC Center for the LGBT Community",cats:["Special Services"],phone:"202-682-2245",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"LGBTQ+",lang:"",site:"",notes:""},
+  {name:"DVRP",cats:["Special Services"],phone:"202-464-4477",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Asian / Pacific Islanders",lang:"",site:"",notes:""},
+  {name:"La Clínica del Pueblo",cats:["Special Services"],phone:"202-462-4788",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"LGBTQ+, Immigrants",lang:"Spanish",site:"",notes:""},
+  {name:"The Person Center",cats:["Special Services"],phone:"202-365-8213",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"African Immigrants",lang:"",site:"",notes:""},
+  {name:"Mary's Center",cats:["Special Services"],phone:"202-483-8196",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:"Support & counseling"},
+  {name:"African Communities Together",cats:["Immigration Legal"],phone:"(240) 621-0194",addr:"700 Pennsylvania Ave SE, 2nd Floor",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"",site:"africans.us",notes:"Asylum, DACA, employment auth"},
+  {name:"Catholic Charities of Washington DC",cats:["Immigration Legal"],phone:"(240) 858-0958",addr:"924 G St NW",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"",site:"catholiccharitiesdc.org",notes:"Full immigration services"},
+  {name:"Mil Mujeres Inc",cats:["Immigration Legal"],phone:"(202) 808-3311",addr:"1250 H St NW, Suite 520",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"Spanish",site:"milmujeres.org",notes:"Asylum, DACA, VAWA"},
+  {name:"Whitman-Walker – Legal Services",cats:["Immigration Legal"],phone:"(202) 939-7630",addr:"1377 R St NW, Suite 200",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants, LGBTQ+",lang:"",site:"whitman-walker.org",notes:"LGBTQ+ friendly"},
+  {name:"Kids in Need of Defense",cats:["Immigration Legal"],phone:"(202) 670-3585",addr:"1411 K St NW, Suite 200",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Children / Youth",lang:"",site:"supportkind.org",notes:"Children's cases only"},
+  {name:"Amica Center for Immigrant Rights",cats:["Immigration Legal"],phone:"(202) 331-3320",addr:"1025 Connecticut Ave NW, Suite 701",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"",site:"amicacenter.org",notes:"Asylum, removal hearings"},
+  {name:"Georgetown University Law – CALS",cats:["Immigration Legal"],phone:"(202) 662-9565",addr:"600 New Jersey Ave NW, Suite 332",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"",site:"law.georgetown.edu/clinics/cals",notes:"Asylum, removal hearings"},
+  {name:"US Committee for Refugees and Immigrants",cats:["Immigration Legal"],phone:"(202) 570-4861",addr:"1400 16th St NW, Suite 210",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"",site:"refugees.org",notes:"Full immigration services"},
+  {name:"Central American Resource Center",cats:["Immigration Legal"],phone:"(202) 328-9799",addr:"1460 Columbia Rd NW, Suite C-1",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"Spanish",site:"carecendc.org",notes:"DACA, TPS, naturalization"},
+  {name:"Nicaraguan American Human Rights Alliance",cats:["Immigration Legal"],phone:"No phone",addr:"1400 20th St NW #G4",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Immigrants",lang:"Spanish",site:"nahraglobal.org",notes:"Asylum, VAWA, TPS"},
+  {name:"George Washington University – Immigration Clinic",cats:["Immigration Legal"],phone:"(202) 994-7463",addr:"2000 G St NW",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"",site:"law.gwu.edu/immigration-clinic",notes:"DACA, removal, naturalization"},
+  {name:"Human Rights First",cats:["Immigration Legal"],phone:"(202) 370-3313",addr:"825 21st St NW PMB 253",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"",site:"humanrightsfirst.org",notes:"Asylum, removal hearings"},
+  {name:"CASA – Multicultural Center",cats:["Immigration Legal"],phone:"(301) 431-4185",addr:"8151 15th Ave, Langley Park MD",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"Spanish",site:"wearecasa.org",notes:"DACA, naturalization, TPS"},
+  {name:"American University – Immigrant Justice Clinic",cats:["Immigration Legal"],phone:"(202) 274-4147",addr:"4300 Nebraska Ave NW, Suite Y265",hours:"Call for hours",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Immigrants",lang:"",site:"wcl.american.edu",notes:"Full immigration services"},
+  {name:"DBH Access Help Line",cats:["Mental Health / Substance Abuse"],phone:"1-888-793-4357",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"Crisis hotline"},
+  {name:"DBH Assessment & Referral Center",cats:["Mental Health / Substance Abuse"],phone:"202-727-8473",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"HIPS",cats:["Mental Health / Substance Abuse"],phone:"1-800-676-4477",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"Unity Health Care",cats:["Health Clinic"],phone:"202-508-0500",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"Central Union Mission",cats:["Health Clinic"],phone:"202-528-0500",addr:"65 Massachusetts Ave NW",hours:"Tue & Thu 5–9pm",days:["Tue","Thu"],oH:17,cH:21,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"Federal City",cats:["Health Clinic"],phone:"202-508-0500",addr:"425 2nd St NW",hours:"Mon–Fri 8am–4pm, Sat 8am–12pm",days:["Mon","Tue","Wed","Thu","Fri","Sat"],oH:8,cH:16,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"Hope Has A Home – Ward 1",cats:["Health Clinic"],phone:"202-748-5409",addr:"4515 Edson Pl. NE",hours:"Mon–Fri 8am–4pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:8,cH:16,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"NY Ave Shelter Clinic",cats:["Health Clinic"],phone:"202-508-0500",addr:"1355 New York Ave NE",hours:"Mon & Wed 5–9pm",days:["Mon","Wed"],oH:17,cH:21,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"Pathways to Housing",cats:["Health Clinic","Housing"],phone:"202-508-0500",addr:"1151 Bladensburg Road NE",hours:"Mon & Wed 8–11:30am",days:["Mon","Wed"],oH:8,cH:11.5,x:false,who:"Everyone",lang:"",site:"pathwaystohousingdc.org",notes:""},
+  {name:"Covenant House",cats:["Youth Services"],phone:"202-610-9600",addr:"2001 Mississippi Ave SE",hours:"Mon–Fri 8:30am–5pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:8.5,cH:17,x:false,who:"Ages 24 & under",lang:"",site:"covenanthouse.org",notes:""},
+  {name:"Latin American Youth Center (LAYC)",cats:["Youth Services"],phone:"202-319-2225",addr:"1419 Columbia Rd NW",hours:"Mon–Fri 9am–5pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:9,cH:17,x:false,who:"Youth",lang:"Spanish",site:"layc-dc.org",notes:"Se habla español"},
+  {name:"Sasha Bruce",cats:["Youth Services"],phone:"202-675-9340",addr:"741 8th St SE",hours:"Mon/Tue/Thu 8am–6pm, Fri 8am–4pm",days:["Mon","Tue","Thu","Fri"],oH:8,cH:18,x:false,who:"Youth",lang:"",site:"sashabruce.org",notes:"Wed by appointment only"},
+  {name:"SMYAL",cats:["Youth Services"],phone:"202-546-5940",addr:"410 7th Street SE",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"LGBTQ+ Youth",lang:"",site:"smyal.org",notes:""},
+  {name:"Zoe's Doors",cats:["Youth Services"],phone:"202-248-2098",addr:"900 Rhode Island Ave NE",hours:"24/7 — always open",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Ages 18–24",lang:"",site:"dcdoors.org",notes:""},
+  {name:"VA Community Resource & Referral Center",cats:["Veterans"],phone:"202-745-3012 ext. 8",addr:"1500 Franklin Street NE",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Veterans",lang:"",site:"",notes:""},
+  {name:"Veterans Benefits",cats:["Veterans"],phone:"1-800-827-1000",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Veterans",lang:"",site:"benefits.va.gov",notes:""},
+  {name:"Call Center for Homeless Veterans",cats:["Veterans"],phone:"1-877-424-3838",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Veterans",lang:"",site:"",notes:"Hotline"},
+  {name:"Aimhire (Friendship Place)",cats:["Jobs"],phone:"202-248-0496",addr:"5100 Wisconsin Ave NW, Suite 520",hours:"Mondays 8:30am–11:30am & 1–4pm",days:["Mon"],oH:8.5,cH:16,x:false,who:"Veterans & Families only",lang:"",site:"friendshipplace.org",notes:"Family = dependent child in household"},
+  {name:"DC Coalition for the Homeless",cats:["Jobs","Housing"],phone:"(202) 347-8870",addr:"1234 Massachusetts Ave NW, Suite C-1015",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"dccfh.org",notes:"Employment & transitional housing"},
+  {name:"Jobs Have Priority (JHP)",cats:["Jobs"],phone:"202-544-9096",addr:"1526 Pennsylvania Ave SE",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"jobshavepriority.org",notes:""},
+  {name:"Friendship Place – Jobs for Families",cats:["Jobs"],phone:"202-364-1419",addr:"4713 Wisconsin Ave NW",hours:"Mon/Tue/Thu 9am–12pm & 1–4pm",days:["Mon","Tue","Thu"],oH:9,cH:16,x:false,who:"Families only",lang:"",site:"",notes:"Family = dependent child in household"},
+  {name:"Best Buddies",cats:["Jobs"],phone:"",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"People with learning disabilities",lang:"",site:"",notes:""},
+];
 
+// ── TRANSLATIONS ─────────────────────────────────────────────
+const TX = {
+  en: {
+    subTitle:"Resource Finder · DC", emTxt:"Emergency?", emSub:"Crisis lines open 24 / 7",
+    emBtn:"Call 911", heroEye:"Feeding Our Relatives Program",
+    heroH1:'Find <em>Free</em> Help<br>Near You in DC',
+    heroP:"Tap what you need. We'll show you what's open.",
+    catLabel:"What do you need?", dayLabel:"Which day?",
+    openOff:"Show Open Now", openOn:"Open Now Only",
+    foundTxt:" resources found", clrBtn:"✕ Clear all",
+    emptyH:"No results", emptyP:"Try removing a filter or changing your search.",
+    loadingTxt:"Loading resources…", nav1:"Find Help", nav2:"Map", nav3:"Emergency", nav4:"About",
+    srchPh:"🔍  Search by name or keyword…",
+    badge:{always:"24 / 7", open:"Open Now", closed:"Closed Now", callhrs:"Call for hours"},
+    btn:{call:"📞 Call", dir:"🗺️ Directions", web:"🌐 Website"},
+    tag:{sp:"🌎 Spanish", wo:"👩 Women", ve:"🎖️ Veterans", lg:"🏳️‍🌈 LGBTQ+", im:"🌍 Immigrants"},
+    catNames:{
+      "Emergency":"Emergency","Family Shelter":"Family Shelter","Food":"Food","Clothing":"Clothing",
+      "Laundry":"Laundry","Supportive Services":"Support","Domestic Violence & Trafficking":"DV & Safety",
+      "Special Services":"Special Svcs","Immigration Legal":"Immigration",
+      "Mental Health / Substance Abuse":"Mental Health","Health Clinic":"Health",
+      "Youth Services":"Youth","Veterans":"Veterans","Jobs":"Jobs","Housing":"Housing","__all__":"Show All"
+    },
+    days:{All:"Any Day",Mon:"Monday",Tue:"Tuesday",Wed:"Wednesday",Thu:"Thursday",Fri:"Friday",Sat:"Saturday",Sun:"Sunday"}
+  },
+  es: {
+    subTitle:"Buscador de Recursos · DC", emTxt:"¿Emergencia?", emSub:"Líneas de crisis 24 / 7",
+    emBtn:"Llamar 911", heroEye:"Programa Alimentando a Nuestros Familiares",
+    heroH1:'Encuentra <em>Ayuda Gratis</em><br>Cerca de Ti en DC',
+    heroP:"Toca lo que necesitas. Te mostraremos qué está abierto.",
+    catLabel:"¿Qué necesitas?", dayLabel:"¿Qué día?",
+    openOff:"Mostrar Abierto Ahora", openOn:"Solo Abierto Ahora",
+    foundTxt:" recursos encontrados", clrBtn:"✕ Borrar todo",
+    emptyH:"Sin resultados", emptyP:"Intenta quitar un filtro o cambiar tu búsqueda.",
+    loadingTxt:"Cargando recursos…", nav1:"Buscar", nav2:"Mapa", nav3:"Emergencia", nav4:"Acerca",
+    srchPh:"🔍  Buscar por nombre o palabra clave…",
+    badge:{always:"24 / 7", open:"Abierto", closed:"Cerrado", callhrs:"Llamar para horario"},
+    btn:{call:"📞 Llamar", dir:"🗺️ Cómo Llegar", web:"🌐 Sitio Web"},
+    tag:{sp:"🌎 Español", wo:"👩 Mujeres", ve:"🎖️ Veteranos", lg:"🏳️‍🌈 LGBTQ+", im:"🌍 Inmigrantes"},
+    catNames:{
+      "Emergency":"Emergencia","Family Shelter":"Refugio Familiar","Food":"Comida","Clothing":"Ropa",
+      "Laundry":"Lavandería","Supportive Services":"Apoyo","Domestic Violence & Trafficking":"VD y Tráfico",
+      "Special Services":"Servicios Esp.","Immigration Legal":"Inmigración",
+      "Mental Health / Substance Abuse":"Salud Mental","Health Clinic":"Clínica",
+      "Youth Services":"Jóvenes","Veterans":"Veteranos","Jobs":"Empleos","Housing":"Vivienda","__all__":"Ver Todo"
+    },
+    days:{All:"Cualquier Día",Mon:"Lunes",Tue:"Martes",Wed:"Miércoles",Thu:"Jueves",Fri:"Viernes",Sat:"Sábado",Sun:"Domingo"}
+  }
+};
 
 const CAT_ICON={"Emergency":"🚨","Family Shelter":"👨‍👩‍👧","Food":"🍽️","Clothing":"👕","Laundry":"🧺","Supportive Services":"🤝","Domestic Violence & Trafficking":"🛡️","Special Services":"🌐","Immigration Legal":"⚖️","Mental Health / Substance Abuse":"🧠","Health Clinic":"🏥","Youth Services":"🌟","Veterans":"🎖️","Jobs":"💼","Housing":"🏠"};
 const CAT_ORDER=["Emergency","Food","Clothing","Housing","Health Clinic","Laundry","Jobs","Mental Health / Substance Abuse","Supportive Services","Domestic Violence & Trafficking","Immigration Legal","Special Services","Youth Services","Veterans","Family Shelter"];
-const T={
-  catLabels:{
-    en:{"Emergency":"Emergency","Family Shelter":"Family Shelter","Food":"Food","Clothing":"Clothing","Laundry":"Laundry","Supportive Services":"Support","Domestic Violence & Trafficking":"DV & Safety","Special Services":"Special Svcs","Immigration Legal":"Immigration","Mental Health / Substance Abuse":"Mental Health","Health Clinic":"Health","Youth Services":"Youth","Veterans":"Veterans","Jobs":"Jobs","Housing":"Housing","__all__":"Show All"},
-    es:{"Emergency":"Emergencia","Family Shelter":"Refugio Familiar","Food":"Comida","Clothing":"Ropa","Laundry":"Lavandería","Supportive Services":"Apoyo","Domestic Violence & Trafficking":"VD y Tráfico","Special Services":"Servicios Esp.","Immigration Legal":"Inmigración","Mental Health / Substance Abuse":"Salud Mental","Health Clinic":"Clínica","Youth Services":"Jóvenes","Veterans":"Veteranos","Jobs":"Empleos","Housing":"Vivienda","__all__":"Ver Todo"}
-  },
-  badge:{en:{always:"24 / 7",open:"Open Now",closed:"Closed Now"},es:{always:"24 / 7",open:"Abierto",closed:"Cerrado"}},
-  btn:{en:{call:"📞 Call",dir:"🗺️ Directions",web:"🌐 Website"},es:{call:"📞 Llamar",dir:"🗺️ Cómo Llegar",web:"🌐 Sitio Web"}},
-  tag:{en:{sp:"🌎 Spanish",wo:"👩 Women",ve:"🎖️ Veterans",lg:"🏳️‍🌈 LGBTQ+",im:"🌍 Immigrants"},es:{sp:"🌎 Español",wo:"👩 Mujeres",ve:"🎖️ Veteranos",lg:"🏳️‍🌈 LGBTQ+",im:"🌍 Inmigrantes"}}
-};
-let activeCat=null,activeDay="All",openOnly=false,lang="en",dark=false;
+const DAYS_ORDER=["All","Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+// ── STATE ─────────────────────────────────────────────────────
+let activeCat=null, activeDay="All", openOnly=false, lang="en", dark=false;
+
+// ── TIME HELPERS ──────────────────────────────────────────────
 function nowH(){const d=new Date();return d.getHours()+d.getMinutes()/60;}
 function todayD(){return["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][new Date().getDay()];}
-function isOpen(r){if(r.x)return true;if(!r.days.length)return false;const h=nowH(),d=todayD();return r.days.includes(d)&&r.oH<=h&&r.cH>h;}
+
+// FIX 1: Improved isOpen — resources with no day info show a "Call for hours" badge
+// They are NEVER filtered out by day filter — we show them with a neutral badge instead
+function getStatus(r){
+  if(r.x) return 'always';
+  if(!r.days.length) return 'callhrs';   // <-- FIX: no day info = call for hours, not "closed"
+  const h=nowH(), d=todayD();
+  if(!r.days.includes(d)) return 'closed';
+  if(r.oH===0 && r.cH===0) return 'callhrs';  // has days but no specific times
+  return (r.oH<=h && r.cH>h) ? 'open' : 'closed';
+}
+
+// ── THEME ─────────────────────────────────────────────────────
 function toggleTheme(){
-  dark=!dark;document.body.classList.toggle('dark',dark);
+  dark=!dark;
+  document.body.classList.toggle('dark',dark);
   document.getElementById('themeBtn').textContent=dark?'☀️':'🌙';
   localStorage.setItem('drTheme',dark?'dark':'light');
 }
+
+// ── LANGUAGE ──────────────────────────────────────────────────
 function toggleLang(){
   lang=lang==='en'?'es':'en';
   const b=document.getElementById('langBtn');
   b.textContent=lang==='en'?'🌎 ES':'🌎 EN';
   b.classList.toggle('es-on',lang==='es');
-  document.querySelectorAll('[data-en]').forEach(el=>el.innerHTML=el.getAttribute('data-'+lang));
-  document.getElementById('srch').placeholder=document.getElementById('srch').getAttribute('data-'+lang+'-ph');
-  buildCats();render();
-}
-function buildCats(){
-  const all=new Set();DATA.forEach(r=>r.cats.forEach(c=>all.add(c)));
-  const sorted=[...CAT_ORDER.filter(c=>all.has(c)),...[...all].filter(c=>!CAT_ORDER.includes(c))];
-  const L=T.catLabels[lang];
-  document.getElementById('catGrid').innerHTML=sorted.map(c=>`<button class="cat-btn${activeCat===c?' on':''}" data-cat="${c}" onclick="toggleCat(this)"><span class="ci">${CAT_ICON[c]||'📍'}</span><span class="cl">${L[c]||c}</span></button>`).join('')+`<button class="cat-btn" data-cat="__all__" onclick="clearFilters()"><span class="ci">✨</span><span class="cl">${L['__all__']}</span></button>`;
-}
-function toggleCat(btn){document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('on'));activeCat=(activeCat===btn.dataset.cat)?null:btn.dataset.cat;if(activeCat)btn.classList.add('on');render();}
-function setDay(btn){document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');activeDay=btn.dataset.day;render();}
-function toggleOpen(){
-  openOnly=!openOnly;
-  const b=document.getElementById('openBtn');b.classList.toggle('on',openOnly);
-  const sp=document.getElementById('openTxt');
-  sp.setAttribute('data-en',openOnly?'Open Now Only':'Show Open Now');
-  sp.setAttribute('data-es',openOnly?'Solo Abierto Ahora':'Mostrar Abierto Ahora');
-  sp.textContent=lang==='es'?(openOnly?'Solo Abierto Ahora':'Mostrar Abierto Ahora'):(openOnly?'Open Now Only':'Show Open Now');
+  applyLang();
+  buildUI();   // rebuild category + day buttons with translated labels
   render();
 }
-function clearFilters(){
-  activeCat=null;activeDay="All";openOnly=false;buildCats();
-  document.querySelectorAll('.day-btn').forEach(b=>b.classList.toggle('on',b.dataset.day==='All'));
-  const ob=document.getElementById('openBtn');ob.classList.remove('on');
-  const sp=document.getElementById('openTxt');sp.textContent=lang==='es'?'Mostrar Abierto Ahora':'Show Open Now';
-  document.getElementById('srch').value='';render();
+
+function applyLang(){
+  const t=TX[lang];
+  // Update all static text by ID — no innerHTML overwriting of elements with children
+  document.getElementById('subTitle').textContent=t.subTitle;
+  document.getElementById('emTxt').textContent=t.emTxt;
+  document.getElementById('emSub').textContent=t.emSub;
+  document.getElementById('emBtn').textContent=t.emBtn;
+  document.getElementById('heroEye').textContent=t.heroEye;
+  document.getElementById('heroH1').innerHTML=t.heroH1;
+  document.getElementById('heroP').textContent=t.heroP;
+  document.getElementById('catLabel').textContent=t.catLabel;
+  document.getElementById('dayLabel').textContent=t.dayLabel;
+  document.getElementById('openTxt').textContent=openOnly?t.openOn:t.openOff;
+  document.getElementById('foundTxt').textContent=t.foundTxt;
+  document.getElementById('clrBtn').textContent=t.clrBtn;
+  document.getElementById('emptyH').textContent=t.emptyH;
+  document.getElementById('emptyP').textContent=t.emptyP;
+  document.getElementById('loadingTxt').textContent=t.loadingTxt;
+  document.getElementById('nav1').textContent=t.nav1;
+  document.getElementById('nav2').textContent=t.nav2;
+  document.getElementById('nav3').textContent=t.nav3;
+  document.getElementById('nav4').textContent=t.nav4;
+  document.getElementById('srch').placeholder=t.srchPh;
 }
+
+// ── BUILD FILTER UI ───────────────────────────────────────────
+// FIX 2: Build both cat buttons AND day buttons from JS
+// so they are fully rebuilt on language switch with correct labels
+function buildUI(){
+  const t=TX[lang];
+
+  // Category buttons
+  const all=new Set();
+  DATA.forEach(r=>r.cats.forEach(c=>all.add(c)));
+  const sorted=[...CAT_ORDER.filter(c=>all.has(c)),...[...all].filter(c=>!CAT_ORDER.includes(c))];
+  document.getElementById('catGrid').innerHTML=
+    sorted.map(c=>`<button class="cat-btn${activeCat===c?' on':''}" data-cat="${c}" onclick="setCat(this)"><span class="ci">${CAT_ICON[c]||'📍'}</span><span class="cl">${t.catNames[c]||c}</span></button>`).join('')+
+    `<button class="cat-btn" data-cat="__all__" onclick="clearAll()"><span class="ci">✨</span><span class="cl">${t.catNames['__all__']}</span></button>`;
+
+  // Day buttons — fully rebuilt so labels translate correctly
+  document.getElementById('dayRow').innerHTML=
+    DAYS_ORDER.map(d=>`<button class="day-btn${activeDay===d?' on':''}" data-day="${d}" onclick="setDay(this)">${t.days[d]}</button>`).join('');
+}
+
+// ── FILTER ACTIONS ────────────────────────────────────────────
+function setCat(btn){
+  // FIX 3: Toggle off if same category clicked again
+  activeCat=(activeCat===btn.dataset.cat)?null:btn.dataset.cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.toggle('on', b.dataset.cat===activeCat));
+  render();
+}
+
+function setDay(btn){
+  activeDay=btn.dataset.day;
+  document.querySelectorAll('.day-btn').forEach(b=>b.classList.toggle('on', b.dataset.day===activeDay));
+  render();
+}
+
+function toggleOpen(){
+  openOnly=!openOnly;
+  document.getElementById('openToggle').classList.toggle('on',openOnly);
+  document.getElementById('openTxt').textContent=openOnly?TX[lang].openOn:TX[lang].openOff;
+  render();
+}
+
+// FIX 4: clearAll resets EVERYTHING including day back to "All"
+function clearAll(){
+  activeCat=null; activeDay="All"; openOnly=false;
+  document.getElementById('openToggle').classList.remove('on');
+  document.getElementById('openTxt').textContent=TX[lang].openOff;
+  document.getElementById('srch').value='';
+  buildUI();   // rebuilds buttons with correct active states
+  render();
+}
+
+// ── RENDER ────────────────────────────────────────────────────
 function render(){
+  const t=TX[lang];
   const q=(document.getElementById('srch').value||'').toLowerCase();
+
   const list=DATA.filter(r=>{
-    if(activeCat&&!r.cats.includes(activeCat))return false;
-    if(activeDay!=='All'&&!r.days.includes(activeDay))return false;
-    if(openOnly&&!isOpen(r))return false;
-    if(q&&!r.name.toLowerCase().includes(q)&&!(r.notes||'').toLowerCase().includes(q)&&!r.cats.join(' ').toLowerCase().includes(q))return false;
+    // Category filter
+    if(activeCat && !r.cats.includes(activeCat)) return false;
+    // FIX 5: Day filter — resources with NO day info (callhrs) are ALWAYS shown
+    // They can't be filtered by day because we don't know their schedule
+    if(activeDay!=='All'){
+      const status=getStatus(r);
+      if(status!=='callhrs' && !r.days.includes(activeDay)) return false;
+      // callhrs resources still show through day filter with their neutral badge
+    }
+    // FIX 6: Open Now filter — callhrs resources are excluded since we can't know if open
+    if(openOnly){
+      const status=getStatus(r);
+      if(status!=='always' && status!=='open') return false;
+    }
+    // Search
+    if(q){
+      const hay=r.name.toLowerCase()+' '+(r.notes||'').toLowerCase()+' '+r.cats.join(' ').toLowerCase()+' '+(r.who||'').toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
     return true;
   });
+
   const hasF=activeCat||activeDay!=='All'||openOnly||q;
   document.getElementById('clrBtn').style.display=hasF?'block':'none';
   document.getElementById('rnum').textContent=list.length;
   document.getElementById('hdrBadge').textContent=list.length+(lang==='es'?' Recursos':' Resources');
-  const wrap=document.getElementById('cards'),emp=document.getElementById('empty');
+
+  const wrap=document.getElementById('cards'), emp=document.getElementById('empty');
   if(!list.length){wrap.innerHTML='';emp.style.display='block';return;}
   emp.style.display='none';
-  const bl=T.btn[lang],tl=T.tag[lang],bdg=T.badge[lang],CL=T.catLabels[lang];
+
+  const bl=t.btn, tl=t.tag, bdg=t.badge, CL=t.catNames;
+
   wrap.innerHTML=list.map(r=>{
-    const now=isOpen(r),bc=r.x?'always':(now?'open':'closed'),bt=bdg[bc];
+    const status=getStatus(r);
+    // FIX 7: Show correct badge for each status including callhrs
+    const bt=bdg[status];
     let tags='';
-    if(r.lang==='Spanish')tags+=`<span class="tag sp">${tl.sp}</span>`;
+    if(r.lang==='Spanish') tags+=`<span class="tag sp">${tl.sp}</span>`;
     const wl=r.who.toLowerCase();
-    if(wl.includes('women')||wl.includes('woman'))tags+=`<span class="tag wo">${tl.wo}</span>`;
-    if(wl.includes('veteran'))tags+=`<span class="tag ve">${tl.ve}</span>`;
-    if(wl.includes('lgbtq'))tags+=`<span class="tag lg">${tl.lg}</span>`;
-    if(wl.includes('immigrant'))tags+=`<span class="tag im">${tl.im}</span>`;
-    if(r.cats.length>1)tags+=`<span class="tag">+${r.cats.slice(1).map(c=>CL[c]||c).join(', ')}</span>`;
-    if(r.notes)tags+=`<span class="tag">${r.notes}</span>`;
+    if(wl.includes('women')||wl.includes('woman')) tags+=`<span class="tag wo">${tl.wo}</span>`;
+    if(wl.includes('veteran')) tags+=`<span class="tag ve">${tl.ve}</span>`;
+    if(wl.includes('lgbtq')) tags+=`<span class="tag lg">${tl.lg}</span>`;
+    if(wl.includes('immigrant')) tags+=`<span class="tag im">${tl.im}</span>`;
+    if(r.cats.length>1) tags+=`<span class="tag">+${r.cats.slice(1).map(c=>CL[c]||c).join(', ')}</span>`;
+    if(r.notes) tags+=`<span class="tag">${r.notes}</span>`;
     const mu=r.addr?`https://maps.google.com/?q=${encodeURIComponent(r.addr+' Washington DC')}`:'';
     const su=r.site?(r.site.startsWith('http')?r.site:'https://'+r.site):'';
     const hasA=(r.phone&&r.phone!=='No phone')||mu||su;
-    return `<div class="card"><div class="ctop"><div class="cleft"><div class="ccat">${CAT_ICON[r.cats[0]]||'📍'} ${CL[r.cats[0]]||r.cats[0]}</div><div class="cname">${r.name}</div><div class="cwho">${r.who}</div></div><span class="badge ${bc}">${bt}</span></div><div class="cinfo"><div class="irow"><span class="ico">🕐</span>${r.hours}</div>${r.addr?`<div class="irow"><span class="ico">📍</span>${r.addr}</div>`:''}</div>${tags?`<div class="tags">${tags}</div>`:''}${hasA?`<div class="actions">${r.phone&&r.phone!=='No phone'?`<a class="abtn call" href="tel:${r.phone}">${bl.call}</a>`:''}${mu?`<a class="abtn dir" href="${mu}" target="_blank">${bl.dir}</a>`:''}${su?`<a class="abtn web" href="${su}" target="_blank">${bl.web}</a>`:''}</div>`:''}</div>`;
+    return `<div class="card"><div class="ctop"><div class="cleft"><div class="ccat">${CAT_ICON[r.cats[0]]||'📍'} ${CL[r.cats[0]]||r.cats[0]}</div><div class="cname">${r.name}</div><div class="cwho">${r.who}</div></div><span class="badge ${status}">${bt}</span></div><div class="cinfo"><div class="irow"><span class="ico">🕐</span>${r.hours}</div>${r.addr?`<div class="irow"><span class="ico">📍</span>${r.addr}</div>`:''}</div>${tags?`<div class="tags">${tags}</div>`:''}${hasA?`<div class="actions">${r.phone&&r.phone!=='No phone'?`<a class="abtn call" href="tel:${r.phone}">${bl.call}</a>`:''}${mu?`<a class="abtn dir" href="${mu}" target="_blank">${bl.dir}</a>`:''}${su?`<a class="abtn web" href="${su}" target="_blank">${bl.web}</a>`:''}</div>`:''}</div>`;
   }).join('');
 }
-(function init(){const s=localStorage.getItem('drTheme');if(s==='dark'){dark=true;document.body.classList.add('dark');document.getElementById('themeBtn').textContent='☀️';}})();
 
+// ── INIT ──────────────────────────────────────────────────────
+(function init(){
+  // Restore theme preference
+  if(localStorage.getItem('drTheme')==='dark'){
+    dark=true;
+    document.body.classList.add('dark');
+    document.getElementById('themeBtn').textContent='☀️';
+  }
+})();
 
-function parseTime(t){if(!t)return 0;t=String(t).trim().toUpperCase();const m=t.match(/(\d+):(\d+)\s*(AM|PM)/);if(!m)return 0;let h=parseInt(m[1]),min=parseInt(m[2]),ap=m[3];if(ap==='PM'&&h!==12)h+=12;if(ap==='AM'&&h===12)h=0;return h+min/60;}
-function parseRow(r){return{name:r['Name']||'',cats:(r['Category']||'').split(',').map(s=>s.trim()).filter(Boolean),phone:r['Phone']||'',addr:r['Address']||'',hours:r['Hours']||'',days:(r['Days']||'').split(',').map(s=>s.trim()).filter(Boolean),oH:parseTime(r['Opens At']),cH:parseTime(r['Closes At']),x:(r['24/7?']||'').toLowerCase()==='yes',who:r['Who']||'Everyone',lang:r['Language']||'',site:r['Website']||'',notes:r['Notes']||''};}
-let DATA=[];
-google.script.run
-  .withSuccessHandler(function(rows){DATA=rows.map(parseRow);buildCats();render();})
-  .withFailureHandler(function(){document.getElementById('cards').innerHTML='<div class="loading"><p style="color:var(--red)">Could not load. Please refresh.</p></div>';})
-  .getResources();
-
+applyLang();buildUI();render();
 </script>
 </body>
 </html>
