@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Resources – Distant Relatives</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f5f1ea; --surface:#ffffff; --card:#ffffff; --border:#e0d9cc;
+  --text:#1a1a1a; --text2:#444; --text3:#888;
+  --gold:#9a6f2a; --gold-dim:rgba(154,111,42,0.10); --gold-bdr:rgba(154,111,42,0.28);
+  --green:#276b42; --red:#b83232; --blue:#1e5fa8;
+  --hero-g:linear-gradient(150deg,#f0ebe0 0%,#e8ddc8 50%,#f0ebe0 100%);
+  --shadow:0 1px 6px rgba(0,0,0,0.07);
+}
+body.dark {
+  --bg:#0a0a0a; --surface:#111; --card:#1a1a1a; --border:#2a2a2a;
+  --text:#fff; --text2:#bbb; --text3:#777;
+  --gold:#c9a84c; --gold-dim:rgba(201,168,76,0.14); --gold-bdr:rgba(201,168,76,0.35);
+  --green:#4caf7d; --red:#d95f5f; --blue:#5b9bd5;
+  --hero-g:linear-gradient(150deg,#0d0d0d 0%,#1a1200 55%,#0d0d0d 100%);
+  --shadow:none;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Open Sans',sans-serif;min-height:100vh;transition:background .25s,color .25s;}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 14px;position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;height:58px;box-shadow:var(--shadow);transition:background .25s,border-color .25s;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-mark{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:12px;color:#fff;flex-shrink:0;transition:background .25s;}
+.logo-words{font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;line-height:1.2;color:var(--text);}
+.logo-words small{display:block;font-size:8.5px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;}
+.hdr-controls{display:flex;align-items:center;gap:7px;}
+.hdr-badge{background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;padding:3px 9px;border-radius:20px;}
+.lang-btn{background:var(--gold-dim);border:1.5px solid var(--gold-bdr);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:1px;padding:4px 9px;border-radius:20px;cursor:pointer;transition:all .2s;text-transform:uppercase;}
+.lang-btn.es-on{background:var(--gold);color:#fff;}
+.theme-btn{width:30px;height:30px;border-radius:50%;background:var(--card);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s;}
+.em-bar{background:linear-gradient(90deg,#700,#b00);padding:9px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.em-left{display:flex;align-items:center;gap:8px;}
+.em-txt{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:#fff;}
+.em-sub{font-size:10px;color:rgba(255,255,255,.70);}
+.em-btn{background:#fff;color:#b00;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;padding:5px 14px;border-radius:20px;text-decoration:none;flex-shrink:0;}
+.hero{background:var(--hero-g);border-bottom:1px solid var(--border);padding:26px 16px 20px;text-align:center;position:relative;overflow:hidden;transition:background .25s;}
+.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:320px;height:320px;background:radial-gradient(circle,rgba(154,111,42,.10) 0%,transparent 70%);pointer-events:none;}
+body.dark .hero::before{background:radial-gradient(circle,rgba(201,168,76,.09) 0%,transparent 70%);}
+.hero-eye{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:23px;font-weight:900;line-height:1.2;margin-bottom:5px;color:var(--text);}
+.hero h1 em{font-style:normal;color:var(--gold);}
+.hero p{font-size:12.5px;color:var(--text3);max-width:290px;margin:0 auto 14px;line-height:1.6;}
+.open-btn{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;padding:9px 18px;border-radius:30px;border:none;cursor:pointer;transition:background .2s;}
+.open-btn.on{background:var(--gold);}
+.open-btn .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.85);animation:blink 1.4s infinite;}
+.open-btn.on .dot{animation:none;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.filters{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 13px 0;transition:background .25s,border-color .25s;}
+.flabel{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
+.cat-btn{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all .15s;box-shadow:var(--shadow);}
+.cat-btn:active{transform:scale(.95);}
+.cat-btn.on{background:var(--gold-dim);border-color:var(--gold);}
+.cat-btn .ci{font-size:17px;}
+.cat-btn .cl{font-size:9px;font-weight:700;color:var(--text2);text-align:center;line-height:1.2;font-family:'Montserrat',sans-serif;}
+.cat-btn.on .cl{color:var(--gold);}
+.day-row{display:flex;gap:5px;margin-bottom:12px;overflow-x:auto;padding-bottom:3px;scrollbar-width:none;}
+.day-row::-webkit-scrollbar{display:none;}
+.day-btn{flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 11px;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;color:var(--text3);cursor:pointer;transition:all .15s;}
+.day-btn.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
+.search-wrap{padding:0 0 13px;}
+.search{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 13px;font-family:'Open Sans',sans-serif;font-size:13px;color:var(--text);outline:none;transition:background .25s,border-color .2s,color .25s;}
+.search::placeholder{color:var(--text3);}
+.search:focus{border-color:var(--gold);}
+.rbar{padding:9px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--bg);transition:background .25s;}
+.rcount{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:var(--text3);}
+.rcount b{color:var(--gold);}
+.clr-btn{font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;display:none;}
+.cards{padding:10px 12px 90px;display:flex;flex-direction:column;gap:9px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;animation:up .22s ease;box-shadow:var(--shadow);transition:background .25s,border-color .25s;}
+@keyframes up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.ctop{padding:12px 13px 7px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.cleft{flex:1;}
+.ccat{display:inline-flex;align-items:center;gap:3px;background:var(--gold-dim);border:1px solid var(--gold-bdr);border-radius:20px;padding:2px 7px;font-size:8.5px;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.cname{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:2px;}
+.cwho{font-size:11px;color:var(--text3);}
+.badge{flex-shrink:0;font-family:'Montserrat',sans-serif;font-size:8.5px;font-weight:700;padding:3px 8px;border-radius:20px;text-transform:uppercase;white-space:nowrap;}
+.badge.open{background:rgba(39,107,66,.12);color:var(--green);border:1px solid rgba(39,107,66,.3);}
+.badge.closed{background:rgba(184,50,50,.10);color:var(--red);border:1px solid rgba(184,50,50,.25);}
+.badge.always{background:rgba(39,107,66,.12);color:var(--green);border:1px solid rgba(39,107,66,.3);}
+body.dark .badge.open,body.dark .badge.always{background:rgba(76,175,125,.13);color:#4caf7d;border-color:rgba(76,175,125,.3);}
+body.dark .badge.closed{background:rgba(217,95,95,.10);color:#d95f5f;border-color:rgba(217,95,95,.25);}
+.cinfo{padding:0 13px 7px;display:flex;flex-direction:column;gap:4px;}
+.irow{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:var(--text2);line-height:1.4;}
+.irow .ico{font-size:12px;flex-shrink:0;margin-top:1px;}
+.tags{padding:0 13px 10px;display:flex;flex-wrap:wrap;gap:4px;}
+.tag{background:var(--gold-dim);border:1px solid var(--border);border-radius:20px;padding:2px 7px;font-size:9px;color:var(--text3);font-family:'Montserrat',sans-serif;font-weight:600;}
+.tag.sp{color:#2058a0;border-color:rgba(32,88,160,.25);background:rgba(32,88,160,.07);}
+.tag.wo{color:#8a2090;border-color:rgba(138,32,144,.25);background:rgba(138,32,144,.07);}
+.tag.ve{color:#1a6e3a;border-color:rgba(26,110,58,.25);background:rgba(26,110,58,.07);}
+.tag.lg{color:#8a5500;border-color:rgba(138,85,0,.25);background:rgba(138,85,0,.07);}
+.tag.im{color:#1a3e70;border-color:rgba(26,62,112,.25);background:rgba(26,62,112,.07);}
+body.dark .tag.sp{color:#7eb8f7;background:rgba(126,184,247,.07);border-color:rgba(126,184,247,.3);}
+body.dark .tag.wo{color:#f7aef7;background:rgba(247,174,247,.07);border-color:rgba(247,174,247,.3);}
+body.dark .tag.ve{color:#7ef7b8;background:rgba(126,247,184,.07);border-color:rgba(126,247,184,.3);}
+body.dark .tag.lg{color:#f9c86a;background:rgba(249,200,106,.07);border-color:rgba(249,200,106,.3);}
+body.dark .tag.im{color:#a0c4ff;background:rgba(160,196,255,.07);border-color:rgba(160,196,255,.3);}
+.actions{display:flex;border-top:1px solid var(--border);}
+.abtn{flex:1;padding:11px 6px;display:flex;align-items:center;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;color:var(--text3);text-decoration:none;transition:background .12s;}
+.abtn:not(:last-child){border-right:1px solid var(--border);}
+.abtn:active{background:var(--gold-dim);}
+.abtn.call{color:var(--green);}
+.abtn.dir{color:var(--blue);}
+.abtn.web{color:var(--gold);}
+.loading{text-align:center;padding:60px 20px;}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading p{font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text3);}
+.empty{text-align:center;padding:50px 20px;display:none;}
+.empty .ei{font-size:42px;margin-bottom:12px;}
+.empty h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;margin-bottom:5px;color:var(--text);}
+.empty p{font-size:12px;color:var(--text3);}
+.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:flex;padding:6px 0 10px;z-index:200;transition:background .25s,border-color .25s;box-shadow:var(--shadow);}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:3px 0;}
+.ni .nicon{font-size:18px;}
+.ni .nlbl{font-family:'Montserrat',sans-serif;font-size:8px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);}
+.ni.on .nlbl{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">DR</div>
+    <div class="logo-words">Distant Relatives<small data-en="Resource Finder · DC" data-es="Buscador de Recursos · DC">Resource Finder · DC</small></div>
+  </div>
+  <div class="hdr-controls">
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌎 ES</button>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+    <div class="hdr-badge" id="hdrBadge">…</div>
+  </div>
+</header>
+
+<div class="em-bar">
+  <div class="em-left">
+    <span style="font-size:17px">🚨</span>
+    <div>
+      <div class="em-txt" data-en="Emergency?" data-es="¿Emergencia?">Emergency?</div>
+      <div class="em-sub" data-en="Crisis lines open 24 / 7" data-es="Líneas de crisis abiertas 24 / 7">Crisis lines open 24 / 7</div>
+    </div>
+  </div>
+  <a class="em-btn" href="tel:911" data-en="Call 911" data-es="Llamar 911">Call 911</a>
+</div>
+
+<div class="hero">
+  <div class="hero-eye" data-en="Feeding Our Relatives Program" data-es="Programa Alimentando a Nuestros Familiares">Feeding Our Relatives Program</div>
+  <h1 data-en="Find <em>Free</em> Help<br>Near You in DC" data-es="Encuentra <em>Ayuda Gratis</em><br>Cerca de Ti en DC">Find <em>Free</em> Help<br>Near You in DC</h1>
+  <p data-en="Tap what you need. We'll show you what's open." data-es="Toca lo que necesitas. Te mostraremos qué está abierto.">Tap what you need. We'll show you what's open.</p>
+  <button class="open-btn" id="openBtn" onclick="toggleOpen()">
+    <div class="dot"></div>
+    <span id="openTxt" data-en="Show Open Now" data-es="Mostrar Abierto Ahora">Show Open Now</span>
+  </button>
+</div>
+
+<div class="filters">
+  <div class="flabel" data-en="What do you need?" data-es="¿Qué necesitas?">What do you need?</div>
+  <div class="cat-grid" id="catGrid"></div>
+  <div class="flabel" data-en="Which day?" data-es="¿Qué día?">Which day?</div>
+  <div class="day-row">
+    <button class="day-btn on" data-day="All" onclick="setDay(this)" data-en="Any Day"    data-es="Cualquier Día">Any Day</button>
+    <button class="day-btn"   data-day="Mon" onclick="setDay(this)" data-en="Monday"     data-es="Lunes">Monday</button>
+    <button class="day-btn"   data-day="Tue" onclick="setDay(this)" data-en="Tuesday"    data-es="Martes">Tuesday</button>
+    <button class="day-btn"   data-day="Wed" onclick="setDay(this)" data-en="Wednesday"  data-es="Miércoles">Wednesday</button>
+    <button class="day-btn"   data-day="Thu" onclick="setDay(this)" data-en="Thursday"   data-es="Jueves">Thursday</button>
+    <button class="day-btn"   data-day="Fri" onclick="setDay(this)" data-en="Friday"     data-es="Viernes">Friday</button>
+    <button class="day-btn"   data-day="Sat" onclick="setDay(this)" data-en="Saturday"   data-es="Sábado">Saturday</button>
+    <button class="day-btn"   data-day="Sun" onclick="setDay(this)" data-en="Sunday"     data-es="Domingo">Sunday</button>
+  </div>
+  <div class="search-wrap">
+    <input class="search" id="srch" type="text"
+      data-en-ph="🔍  Search by name or keyword…"
+      data-es-ph="🔍  Buscar por nombre o palabra clave…"
+      placeholder="🔍  Search by name or keyword…" oninput="render()">
+  </div>
+</div>
+
+<div class="rbar">
+  <div class="rcount"><b id="rnum">–</b><span id="foundTxt" data-en=" resources found" data-es=" recursos encontrados"> resources found</span></div>
+  <button class="clr-btn" id="clrBtn" onclick="clearFilters()" data-en="✕ Clear" data-es="✕ Borrar">✕ Clear</button>
+</div>
+
+<div class="cards" id="cards"><div class="loading"><div class="spinner"></div><p data-en="Loading…" data-es="Cargando…">Loading…</p></div></div>
+<div class="empty" id="empty">
+  <div class="ei">🔍</div>
+  <h3 data-en="No results" data-es="Sin resultados">No results</h3>
+  <p data-en="Try a different day, category, or keyword." data-es="Prueba otro día, categoría o palabra clave.">Try a different day, category, or keyword.</p>
+</div>
+
+<div class="bnav">
+  <div class="ni on"><div class="nicon">🔍</div><div class="nlbl" data-en="Find Help" data-es="Buscar">Find Help</div></div>
+  <div class="ni"><div class="nicon">🗺️</div><div class="nlbl" data-en="Map" data-es="Mapa">Map</div></div>
+  <div class="ni"><div class="nicon">🚨</div><div class="nlbl" data-en="Emergency" data-es="Emergencia">Emergency</div></div>
+  <div class="ni"><div class="nicon">ℹ️</div><div class="nlbl" data-en="About" data-es="Acerca">About</div></div>
+</div>
+
+<script>
+
+
+const CAT_ICON={"Emergency":"🚨","Family Shelter":"👨‍👩‍👧","Food":"🍽️","Clothing":"👕","Laundry":"🧺","Supportive Services":"🤝","Domestic Violence & Trafficking":"🛡️","Special Services":"🌐","Immigration Legal":"⚖️","Mental Health / Substance Abuse":"🧠","Health Clinic":"🏥","Youth Services":"🌟","Veterans":"🎖️","Jobs":"💼","Housing":"🏠"};
+const CAT_ORDER=["Emergency","Food","Clothing","Housing","Health Clinic","Laundry","Jobs","Mental Health / Substance Abuse","Supportive Services","Domestic Violence & Trafficking","Immigration Legal","Special Services","Youth Services","Veterans","Family Shelter"];
+const T={
+  catLabels:{
+    en:{"Emergency":"Emergency","Family Shelter":"Family Shelter","Food":"Food","Clothing":"Clothing","Laundry":"Laundry","Supportive Services":"Support","Domestic Violence & Trafficking":"DV & Safety","Special Services":"Special Svcs","Immigration Legal":"Immigration","Mental Health / Substance Abuse":"Mental Health","Health Clinic":"Health","Youth Services":"Youth","Veterans":"Veterans","Jobs":"Jobs","Housing":"Housing","__all__":"Show All"},
+    es:{"Emergency":"Emergencia","Family Shelter":"Refugio Familiar","Food":"Comida","Clothing":"Ropa","Laundry":"Lavandería","Supportive Services":"Apoyo","Domestic Violence & Trafficking":"VD y Tráfico","Special Services":"Servicios Esp.","Immigration Legal":"Inmigración","Mental Health / Substance Abuse":"Salud Mental","Health Clinic":"Clínica","Youth Services":"Jóvenes","Veterans":"Veteranos","Jobs":"Empleos","Housing":"Vivienda","__all__":"Ver Todo"}
+  },
+  badge:{en:{always:"24 / 7",open:"Open Now",closed:"Closed Now"},es:{always:"24 / 7",open:"Abierto",closed:"Cerrado"}},
+  btn:{en:{call:"📞 Call",dir:"🗺️ Directions",web:"🌐 Website"},es:{call:"📞 Llamar",dir:"🗺️ Cómo Llegar",web:"🌐 Sitio Web"}},
+  tag:{en:{sp:"🌎 Spanish",wo:"👩 Women",ve:"🎖️ Veterans",lg:"🏳️‍🌈 LGBTQ+",im:"🌍 Immigrants"},es:{sp:"🌎 Español",wo:"👩 Mujeres",ve:"🎖️ Veteranos",lg:"🏳️‍🌈 LGBTQ+",im:"🌍 Inmigrantes"}}
+};
+let activeCat=null,activeDay="All",openOnly=false,lang="en",dark=false;
+function nowH(){const d=new Date();return d.getHours()+d.getMinutes()/60;}
+function todayD(){return["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][new Date().getDay()];}
+function isOpen(r){if(r.x)return true;if(!r.days.length)return false;const h=nowH(),d=todayD();return r.days.includes(d)&&r.oH<=h&&r.cH>h;}
+function toggleTheme(){
+  dark=!dark;document.body.classList.toggle('dark',dark);
+  document.getElementById('themeBtn').textContent=dark?'☀️':'🌙';
+  localStorage.setItem('drTheme',dark?'dark':'light');
+}
+function toggleLang(){
+  lang=lang==='en'?'es':'en';
+  const b=document.getElementById('langBtn');
+  b.textContent=lang==='en'?'🌎 ES':'🌎 EN';
+  b.classList.toggle('es-on',lang==='es');
+  document.querySelectorAll('[data-en]').forEach(el=>el.innerHTML=el.getAttribute('data-'+lang));
+  document.getElementById('srch').placeholder=document.getElementById('srch').getAttribute('data-'+lang+'-ph');
+  buildCats();render();
+}
+function buildCats(){
+  const all=new Set();DATA.forEach(r=>r.cats.forEach(c=>all.add(c)));
+  const sorted=[...CAT_ORDER.filter(c=>all.has(c)),...[...all].filter(c=>!CAT_ORDER.includes(c))];
+  const L=T.catLabels[lang];
+  document.getElementById('catGrid').innerHTML=sorted.map(c=>`<button class="cat-btn${activeCat===c?' on':''}" data-cat="${c}" onclick="toggleCat(this)"><span class="ci">${CAT_ICON[c]||'📍'}</span><span class="cl">${L[c]||c}</span></button>`).join('')+`<button class="cat-btn" data-cat="__all__" onclick="clearFilters()"><span class="ci">✨</span><span class="cl">${L['__all__']}</span></button>`;
+}
+function toggleCat(btn){document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('on'));activeCat=(activeCat===btn.dataset.cat)?null:btn.dataset.cat;if(activeCat)btn.classList.add('on');render();}
+function setDay(btn){document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');activeDay=btn.dataset.day;render();}
+function toggleOpen(){
+  openOnly=!openOnly;
+  const b=document.getElementById('openBtn');b.classList.toggle('on',openOnly);
+  const sp=document.getElementById('openTxt');
+  sp.setAttribute('data-en',openOnly?'Open Now Only':'Show Open Now');
+  sp.setAttribute('data-es',openOnly?'Solo Abierto Ahora':'Mostrar Abierto Ahora');
+  sp.textContent=lang==='es'?(openOnly?'Solo Abierto Ahora':'Mostrar Abierto Ahora'):(openOnly?'Open Now Only':'Show Open Now');
+  render();
+}
+function clearFilters(){
+  activeCat=null;activeDay="All";openOnly=false;buildCats();
+  document.querySelectorAll('.day-btn').forEach(b=>b.classList.toggle('on',b.dataset.day==='All'));
+  const ob=document.getElementById('openBtn');ob.classList.remove('on');
+  const sp=document.getElementById('openTxt');sp.textContent=lang==='es'?'Mostrar Abierto Ahora':'Show Open Now';
+  document.getElementById('srch').value='';render();
+}
+function render(){
+  const q=(document.getElementById('srch').value||'').toLowerCase();
+  const list=DATA.filter(r=>{
+    if(activeCat&&!r.cats.includes(activeCat))return false;
+    if(activeDay!=='All'&&!r.days.includes(activeDay))return false;
+    if(openOnly&&!isOpen(r))return false;
+    if(q&&!r.name.toLowerCase().includes(q)&&!(r.notes||'').toLowerCase().includes(q)&&!r.cats.join(' ').toLowerCase().includes(q))return false;
+    return true;
+  });
+  const hasF=activeCat||activeDay!=='All'||openOnly||q;
+  document.getElementById('clrBtn').style.display=hasF?'block':'none';
+  document.getElementById('rnum').textContent=list.length;
+  document.getElementById('hdrBadge').textContent=list.length+(lang==='es'?' Recursos':' Resources');
+  const wrap=document.getElementById('cards'),emp=document.getElementById('empty');
+  if(!list.length){wrap.innerHTML='';emp.style.display='block';return;}
+  emp.style.display='none';
+  const bl=T.btn[lang],tl=T.tag[lang],bdg=T.badge[lang],CL=T.catLabels[lang];
+  wrap.innerHTML=list.map(r=>{
+    const now=isOpen(r),bc=r.x?'always':(now?'open':'closed'),bt=bdg[bc];
+    let tags='';
+    if(r.lang==='Spanish')tags+=`<span class="tag sp">${tl.sp}</span>`;
+    const wl=r.who.toLowerCase();
+    if(wl.includes('women')||wl.includes('woman'))tags+=`<span class="tag wo">${tl.wo}</span>`;
+    if(wl.includes('veteran'))tags+=`<span class="tag ve">${tl.ve}</span>`;
+    if(wl.includes('lgbtq'))tags+=`<span class="tag lg">${tl.lg}</span>`;
+    if(wl.includes('immigrant'))tags+=`<span class="tag im">${tl.im}</span>`;
+    if(r.cats.length>1)tags+=`<span class="tag">+${r.cats.slice(1).map(c=>CL[c]||c).join(', ')}</span>`;
+    if(r.notes)tags+=`<span class="tag">${r.notes}</span>`;
+    const mu=r.addr?`https://maps.google.com/?q=${encodeURIComponent(r.addr+' Washington DC')}`:'';
+    const su=r.site?(r.site.startsWith('http')?r.site:'https://'+r.site):'';
+    const hasA=(r.phone&&r.phone!=='No phone')||mu||su;
+    return `<div class="card"><div class="ctop"><div class="cleft"><div class="ccat">${CAT_ICON[r.cats[0]]||'📍'} ${CL[r.cats[0]]||r.cats[0]}</div><div class="cname">${r.name}</div><div class="cwho">${r.who}</div></div><span class="badge ${bc}">${bt}</span></div><div class="cinfo"><div class="irow"><span class="ico">🕐</span>${r.hours}</div>${r.addr?`<div class="irow"><span class="ico">📍</span>${r.addr}</div>`:''}</div>${tags?`<div class="tags">${tags}</div>`:''}${hasA?`<div class="actions">${r.phone&&r.phone!=='No phone'?`<a class="abtn call" href="tel:${r.phone}">${bl.call}</a>`:''}${mu?`<a class="abtn dir" href="${mu}" target="_blank">${bl.dir}</a>`:''}${su?`<a class="abtn web" href="${su}" target="_blank">${bl.web}</a>`:''}</div>`:''}</div>`;
+  }).join('');
+}
+(function init(){const s=localStorage.getItem('drTheme');if(s==='dark'){dark=true;document.body.classList.add('dark');document.getElementById('themeBtn').textContent='☀️';}})();
+
+
+function parseTime(t){if(!t)return 0;t=String(t).trim().toUpperCase();const m=t.match(/(\d+):(\d+)\s*(AM|PM)/);if(!m)return 0;let h=parseInt(m[1]),min=parseInt(m[2]),ap=m[3];if(ap==='PM'&&h!==12)h+=12;if(ap==='AM'&&h===12)h=0;return h+min/60;}
+function parseRow(r){return{name:r['Name']||'',cats:(r['Category']||'').split(',').map(s=>s.trim()).filter(Boolean),phone:r['Phone']||'',addr:r['Address']||'',hours:r['Hours']||'',days:(r['Days']||'').split(',').map(s=>s.trim()).filter(Boolean),oH:parseTime(r['Opens At']),cH:parseTime(r['Closes At']),x:(r['24/7?']||'').toLowerCase()==='yes',who:r['Who']||'Everyone',lang:r['Language']||'',site:r['Website']||'',notes:r['Notes']||''};}
+let DATA=[];
+google.script.run
+  .withSuccessHandler(function(rows){DATA=rows.map(parseRow);buildCats();render();})
+  .withFailureHandler(function(){document.getElementById('cards').innerHTML='<div class="loading"><p style="color:var(--red)">Could not load. Please refresh.</p></div>';})
+  .getResources();
+
+</script>
+</body>
+</html>
