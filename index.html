@@ -7,143 +7,157 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#f5f1ea;--surface:#ffffff;--card:#ffffff;--border:#e0d9cc;
-  --text:#1a1a1a;--text2:#444;--text3:#888;
-  --gold:#9a6f2a;--gold-dim:rgba(154,111,42,0.10);--gold-bdr:rgba(154,111,42,0.28);
-  --green:#276b42;--red:#b83232;--blue:#1e5fa8;
-  --hero-g:linear-gradient(150deg,#f0ebe0 0%,#e8ddc8 50%,#f0ebe0 100%);
-  --shadow:0 1px 6px rgba(0,0,0,0.07);
+  --bg:#f2f5f8;--surface:#fff;--card:#fff;--border:#d8e2ec;
+  --text:#1a2535;--text2:#3a4a5c;--text3:#7a8fa6;
+  --primary:#2e5fa3;--primary-dark:#1e4080;--primary-dim:rgba(46,95,163,0.09);--primary-bdr:rgba(46,95,163,0.25);
+  --accent:#c9a84c;--accent-dim:rgba(201,168,76,0.12);--accent-bdr:rgba(201,168,76,0.3);
+  --green:#2a7a4b;--green-dim:rgba(42,122,75,0.10);--green-bdr:rgba(42,122,75,0.28);
+  --red:#b83232;--shadow:0 2px 8px rgba(46,95,163,0.09);
 }
 body.dark{
-  --bg:#0a0a0a;--surface:#111;--card:#1a1a1a;--border:#2a2a2a;
-  --text:#fff;--text2:#bbb;--text3:#777;
-  --gold:#c9a84c;--gold-dim:rgba(201,168,76,0.14);--gold-bdr:rgba(201,168,76,0.35);
-  --green:#4caf7d;--red:#d95f5f;--blue:#5b9bd5;
-  --hero-g:linear-gradient(150deg,#0d0d0d 0%,#1a1200 55%,#0d0d0d 100%);
-  --shadow:none;
+  --bg:#0d1520;--surface:#111d2e;--card:#162030;--border:#1e3050;
+  --text:#e8f0f8;--text2:#a8c0d8;--text3:#5a7898;
+  --primary:#4a8fd0;--primary-dark:#2e6aaa;--primary-dim:rgba(74,143,208,0.14);--primary-bdr:rgba(74,143,208,0.35);
+  --green:#4caf7d;--green-dim:rgba(76,175,125,0.14);--green-bdr:rgba(76,175,125,0.35);
+  --red:#d95f5f;--shadow:none;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:'Open Sans',sans-serif;min-height:100vh;transition:background .25s,color .25s;}
-header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 14px;position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;height:58px;box-shadow:var(--shadow);transition:background .25s,border-color .25s;}
-.logo{display:flex;align-items:center;gap:10px;}
-.logo-mark{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:900;font-size:12px;color:#fff;flex-shrink:0;transition:background .25s;}
-.logo-words{font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;line-height:1.2;color:var(--text);}
-.logo-words small{display:block;font-size:8.5px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;}
-.hdr-controls{display:flex;align-items:center;gap:7px;}
-.hdr-badge{background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;padding:3px 9px;border-radius:20px;}
-.lang-btn{background:var(--gold-dim);border:1.5px solid var(--gold-bdr);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:1px;padding:4px 9px;border-radius:20px;cursor:pointer;transition:all .2s;text-transform:uppercase;}
-.lang-btn.es-on{background:var(--gold);color:#fff;}
-.theme-btn{width:30px;height:30px;border-radius:50%;background:var(--card);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s;}
-.em-bar{background:linear-gradient(90deg,#700,#b00);padding:9px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.em-left{display:flex;align-items:center;gap:8px;}
-.em-txt{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;color:#fff;}
-.em-sub{font-size:10px;color:rgba(255,255,255,.70);}
-.em-btn{background:#fff;color:#b00;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;padding:5px 14px;border-radius:20px;text-decoration:none;flex-shrink:0;}
-.hero{background:var(--hero-g);border-bottom:1px solid var(--border);padding:26px 16px 20px;text-align:center;position:relative;overflow:hidden;transition:background .25s;}
-.hero::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:320px;height:320px;background:radial-gradient(circle,rgba(154,111,42,.10) 0%,transparent 70%);pointer-events:none;}
-body.dark .hero::before{background:radial-gradient(circle,rgba(201,168,76,.09) 0%,transparent 70%);}
-.hero-eye{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;}
-.hero h1{font-family:'Montserrat',sans-serif;font-size:23px;font-weight:900;line-height:1.2;margin-bottom:5px;color:var(--text);}
-.hero h1 em{font-style:normal;color:var(--gold);}
-.hero p{font-size:12.5px;color:var(--text3);max-width:290px;margin:0 auto 14px;line-height:1.6;}
-.open-btn{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;padding:9px 18px;border-radius:30px;border:none;cursor:pointer;transition:background .2s;}
-.open-btn.on{background:var(--gold);}
-.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.85);animation:blink 1.4s infinite;flex-shrink:0;}
-.open-btn.on .dot{animation:none;}
-@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
-.filters{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 13px 0;transition:background .25s,border-color .25s;}
-.flabel{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
-.filter-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
-.filter-row .flabel{margin-bottom:0;flex-shrink:0;}
-/* Active filters pill display */
-.active-filters{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
-.af-pill{display:inline-flex;align-items:center;gap:5px;background:var(--gold-dim);border:1px solid var(--gold-bdr);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;}
-.af-pill button{background:none;border:none;color:var(--gold);cursor:pointer;font-size:12px;line-height:1;padding:0;margin-left:2px;}
+
+/* HEADER — white banner with logo */
+header{background:#fff;border-bottom:2px solid #e8edf3;padding:0 16px;position:sticky;top:0;z-index:300;display:flex;align-items:center;justify-content:space-between;height:64px;box-shadow:0 2px 10px rgba(0,0,0,0.10);}
+body.dark header{background:#111d2e;border-bottom-color:#1e3050;}
+.logo-img{height:48px;width:auto;object-fit:contain;}
+.hdr-controls{display:flex;align-items:center;gap:8px;}
+.hdr-badge{background:var(--primary-dim);border:1px solid var(--primary-bdr);color:var(--primary);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;padding:3px 9px;border-radius:20px;}
+.lang-btn{background:var(--primary-dim);border:1.5px solid var(--primary-bdr);color:var(--primary);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:1px;padding:5px 11px;border-radius:20px;cursor:pointer;transition:all .2s;text-transform:uppercase;}
+.lang-btn.es-on{background:var(--primary);color:#fff;}
+.theme-btn{width:32px;height:32px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s;}
+
+/* HERO */
+.hero{background:linear-gradient(150deg,#1e4080 0%,#2e5fa3 60%,#3a72b8 100%);padding:24px 16px 20px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+.hero-eye{font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:6px;}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:900;line-height:1.2;margin-bottom:4px;color:#fff;}
+.hero h1 em{font-style:normal;color:var(--accent);}
+.hero p{font-size:12px;color:rgba(255,255,255,.78);max-width:290px;margin:0 auto;line-height:1.5;}
+
+/* FILTERS */
+.filters{background:var(--surface);border-bottom:2px solid var(--border);padding:14px 13px 2px;transition:background .25s;}
+.open-row{margin-bottom:14px;}
+.open-toggle{display:inline-flex;align-items:center;gap:8px;background:var(--primary-dim);border:1.5px solid var(--primary-bdr);color:var(--primary);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:800;padding:8px 16px;border-radius:25px;cursor:pointer;transition:all .2s;}
+.open-toggle.on{background:var(--primary);color:#fff;border-color:var(--primary);}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.4s infinite;flex-shrink:0;}
+.open-toggle.on .dot{background:rgba(255,255,255,.8);animation:none;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+.flabel{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--primary);margin-bottom:10px;}
+
+/* CAT GRID — multi select */
 .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
-.cat-btn{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all .15s;box-shadow:var(--shadow);}
+.cat-btn{background:var(--card);border:1.5px solid var(--border);border-radius:11px;padding:9px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all .15s;box-shadow:var(--shadow);}
 .cat-btn:active{transform:scale(.95);}
-.cat-btn.on{background:var(--gold-dim);border-color:var(--gold);}
+.cat-btn.on{background:var(--primary-dim);border-color:var(--primary);}
 .cat-btn .ci{font-size:17px;}
-.cat-btn .cl{font-size:9px;font-weight:700;color:var(--text2);text-align:center;line-height:1.2;font-family:'Montserrat',sans-serif;}
-.cat-btn.on .cl{color:var(--gold);}
-.day-row{display:flex;gap:5px;margin-bottom:12px;overflow-x:auto;padding-bottom:3px;scrollbar-width:none;}
+.cat-btn .cl{font-size:8.5px;font-weight:700;color:var(--text2);text-align:center;line-height:1.2;font-family:'Montserrat',sans-serif;}
+.cat-btn.on .cl{color:var(--primary);}
+
+/* DAY — multi select */
+.day-row{display:flex;gap:5px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
 .day-row::-webkit-scrollbar{display:none;}
-.day-btn{flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 11px;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;color:var(--text3);cursor:pointer;transition:all .15s;}
-.day-btn.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
-/* Open now toggle as pill */
-.open-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
-.open-toggle{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 12px;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;color:var(--text3);cursor:pointer;transition:all .15s;}
-.open-toggle.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
-.open-toggle .dot{background:var(--green);animation:blink 1.4s infinite;}
-.open-toggle.on .dot{background:var(--gold);animation:none;}
-.search-wrap{padding:0 0 13px;}
-.search{width:100%;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 13px;font-family:'Open Sans',sans-serif;font-size:13px;color:var(--text);outline:none;transition:background .25s,border-color .2s,color .25s;}
+.day-btn{flex-shrink:0;background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:5px 11px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--text3);cursor:pointer;transition:all .15s;}
+.day-btn.on{background:var(--primary-dim);border-color:var(--primary);color:var(--primary);}
+
+/* TIME FILTER */
+.time-row{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.time-label{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--text3);}
+.time-input{background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:5px 9px;font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);outline:none;transition:border-color .2s;flex:1;min-width:100px;}
+.time-input:focus{border-color:var(--primary);}
+.time-sep{font-size:12px;color:var(--text3);font-weight:600;}
+
+/* SEARCH */
+.search-wrap{padding:0 0 10px;}
+.search{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:9px 13px;font-family:'Open Sans',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .2s;}
 .search::placeholder{color:var(--text3);}
-.search:focus{border-color:var(--gold);}
-.rbar{padding:9px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--bg);transition:background .25s;}
+.search:focus{border-color:var(--primary);}
+
+/* VIEW BAR */
+.view-bar{padding:9px 13px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:var(--surface);}
 .rcount{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:var(--text3);}
-.rcount b{color:var(--gold);}
-.clr-btn{font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;display:none;}
-.cards{padding:10px 12px 90px;display:flex;flex-direction:column;gap:9px;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;animation:up .22s ease;box-shadow:var(--shadow);transition:background .25s,border-color .25s;}
-@keyframes up{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
-.ctop{padding:12px 13px 7px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
-.cleft{flex:1;}
-.ccat{display:inline-flex;align-items:center;gap:3px;background:var(--gold-dim);border:1px solid var(--gold-bdr);border-radius:20px;padding:2px 7px;font-size:8.5px;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
-.cname{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:2px;}
-.cwho{font-size:11px;color:var(--text3);}
-.badge{flex-shrink:0;font-family:'Montserrat',sans-serif;font-size:8.5px;font-weight:700;padding:3px 8px;border-radius:20px;text-transform:uppercase;white-space:nowrap;}
-.badge.open{background:rgba(39,107,66,.12);color:var(--green);border:1px solid rgba(39,107,66,.3);}
+.rcount b{color:var(--primary);}
+.right-bar{display:flex;align-items:center;gap:8px;}
+.clr-btn{font-size:10.5px;color:var(--primary);background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:700;display:none;white-space:nowrap;}
+.view-toggle{display:flex;border:1.5px solid var(--primary);border-radius:20px;overflow:hidden;}
+.vt-btn{padding:5px 12px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--primary);background:transparent;border:none;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:4px;}
+.vt-btn.active{background:var(--primary);color:#fff;}
+
+/* CARDS */
+.cards{padding:10px 12px 30px;display:flex;flex-direction:column;gap:9px;}
+.card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;animation:up .2s ease;box-shadow:var(--shadow);}
+@keyframes up{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.ctop{padding:11px 13px 6px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.cleft{flex:1;min-width:0;}
+.cname{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:5px;}
+
+/* SERVICES CHIPS — show all, highlight active */
+.services-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0;}
+.svc-chip{display:inline-flex;align-items:center;gap:3px;border-radius:20px;padding:2px 7px;font-size:8.5px;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.3px;text-transform:uppercase;border:1px solid var(--border);background:var(--bg);color:var(--text3);}
+.svc-chip.active{background:var(--green-dim);border-color:var(--green-bdr);color:var(--green);}
+
+.cwho{font-size:10.5px;color:var(--text3);margin-top:4px;}
+.badge{flex-shrink:0;font-family:'Montserrat',sans-serif;font-size:8.5px;font-weight:700;padding:3px 8px;border-radius:20px;text-transform:uppercase;white-space:nowrap;margin-top:2px;}
+.badge.open{background:rgba(42,122,75,.12);color:var(--green);border:1px solid var(--green-bdr);}
 .badge.closed{background:rgba(184,50,50,.10);color:var(--red);border:1px solid rgba(184,50,50,.25);}
-.badge.always{background:rgba(39,107,66,.12);color:var(--green);border:1px solid rgba(39,107,66,.3);}
-.badge.callhrs{background:rgba(100,100,100,.10);color:var(--text3);border:1px solid rgba(100,100,100,.2);}
+.badge.always{background:rgba(42,122,75,.12);color:var(--green);border:1px solid var(--green-bdr);}
+.badge.callhrs{background:var(--primary-dim);color:var(--primary);border:1px solid var(--primary-bdr);}
 body.dark .badge.open,body.dark .badge.always{background:rgba(76,175,125,.13);color:#4caf7d;border-color:rgba(76,175,125,.3);}
 body.dark .badge.closed{background:rgba(217,95,95,.10);color:#d95f5f;border-color:rgba(217,95,95,.25);}
-body.dark .badge.callhrs{background:rgba(150,150,150,.10);color:#888;border-color:rgba(150,150,150,.2);}
-.cinfo{padding:0 13px 7px;display:flex;flex-direction:column;gap:4px;}
+
+.cinfo{padding:4px 13px 6px;display:flex;flex-direction:column;gap:3px;}
 .irow{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:var(--text2);line-height:1.4;}
-.irow .ico{font-size:12px;flex-shrink:0;margin-top:1px;}
-.tags{padding:0 13px 10px;display:flex;flex-wrap:wrap;gap:4px;}
-.tag{background:var(--gold-dim);border:1px solid var(--border);border-radius:20px;padding:2px 7px;font-size:9px;color:var(--text3);font-family:'Montserrat',sans-serif;font-weight:600;}
-.tag.sp{color:#2058a0;border-color:rgba(32,88,160,.25);background:rgba(32,88,160,.07);}
-.tag.wo{color:#8a2090;border-color:rgba(138,32,144,.25);background:rgba(138,32,144,.07);}
-.tag.ve{color:#1a6e3a;border-color:rgba(26,110,58,.25);background:rgba(26,110,58,.07);}
-.tag.lg{color:#8a5500;border-color:rgba(138,85,0,.25);background:rgba(138,85,0,.07);}
-.tag.im{color:#1a3e70;border-color:rgba(26,62,112,.25);background:rgba(26,62,112,.07);}
+.irow .ico{font-size:11px;flex-shrink:0;margin-top:1px;}
+
+.tags{padding:0 13px 8px;display:flex;flex-wrap:wrap;gap:4px;}
+.tag{background:var(--primary-dim);border:1px solid var(--border);border-radius:20px;padding:2px 7px;font-size:9px;color:var(--text3);font-family:'Montserrat',sans-serif;font-weight:600;}
+.tag.sp{color:#1a5fa0;border-color:rgba(26,95,160,.3);background:rgba(26,95,160,.08);}
+.tag.wo{color:#7a1a90;border-color:rgba(122,26,144,.3);background:rgba(122,26,144,.08);}
+.tag.ve{color:#1a6e3a;border-color:rgba(26,110,58,.3);background:rgba(26,110,58,.08);}
+.tag.lg{color:#8a5500;border-color:rgba(138,85,0,.3);background:rgba(138,85,0,.08);}
+.tag.im{color:#1a3e70;border-color:rgba(26,62,112,.3);background:rgba(26,62,112,.08);}
 body.dark .tag.sp{color:#7eb8f7;background:rgba(126,184,247,.07);border-color:rgba(126,184,247,.3);}
 body.dark .tag.wo{color:#f7aef7;background:rgba(247,174,247,.07);border-color:rgba(247,174,247,.3);}
 body.dark .tag.ve{color:#7ef7b8;background:rgba(126,247,184,.07);border-color:rgba(126,247,184,.3);}
 body.dark .tag.lg{color:#f9c86a;background:rgba(249,200,106,.07);border-color:rgba(249,200,106,.3);}
 body.dark .tag.im{color:#a0c4ff;background:rgba(160,196,255,.07);border-color:rgba(160,196,255,.3);}
+
 .actions{display:flex;border-top:1px solid var(--border);}
-.abtn{flex:1;padding:11px 6px;display:flex;align-items:center;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;color:var(--text3);text-decoration:none;transition:background .12s;}
+.abtn{flex:1;padding:10px 6px;display:flex;align-items:center;justify-content:center;gap:4px;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--text3);text-decoration:none;transition:background .12s;}
 .abtn:not(:last-child){border-right:1px solid var(--border);}
-.abtn:active{background:var(--gold-dim);}
+.abtn:active{background:var(--primary-dim);}
 .abtn.call{color:var(--green);}
-.abtn.dir{color:var(--blue);}
-.abtn.web{color:var(--gold);}
-.loading{text-align:center;padding:60px 20px;}
-.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
+.abtn.dir{color:var(--primary);}
+.abtn.web{color:var(--accent);}
+
+/* MAP VIEW */
+#mapView{display:none;flex-direction:column;}
+#mapView.visible{display:flex;}
+.map-warning{background:#fff8e8;border:1px solid var(--accent-bdr);color:var(--text2);font-size:11px;font-family:'Montserrat',sans-serif;font-weight:600;padding:8px 12px;margin:8px 12px;border-radius:8px;line-height:1.5;}
+body.dark .map-warning{background:#1e2a10;color:var(--text2);}
+#gmap{width:100%;height:calc(100vh - 250px);min-height:380px;}
+
+/* LOADING / EMPTY */
+.loading{text-align:center;padding:50px 20px;}
+.spinner{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading p{font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text3);}
-.empty{text-align:center;padding:50px 20px;display:none;}
-.empty .ei{font-size:42px;margin-bottom:12px;}
-.empty h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:800;margin-bottom:5px;color:var(--text);}
-.empty p{font-size:12px;color:var(--text3);}
-.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);display:flex;padding:6px 0 10px;z-index:200;transition:background .25s,border-color .25s;box-shadow:var(--shadow);}
-.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:3px 0;}
-.ni .nicon{font-size:18px;}
-.ni .nlbl{font-family:'Montserrat',sans-serif;font-size:8px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);}
-.ni.on .nlbl{color:var(--gold);}
+.loading p,.empty p{font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text3);}
+.empty{text-align:center;padding:40px 20px;display:none;}
+.empty .ei{font-size:40px;margin-bottom:10px;}
+.empty h3{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800;margin-bottom:4px;color:var(--text);}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">
-    <div class="logo-mark">DR</div>
-    <div class="logo-words">Distant Relatives<small id="subTitle">Resource Finder · DC</small></div>
-  </div>
+  <img class="logo-img" src="data:image/jpeg;base64,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" alt="Distant Relatives">
   <div class="hdr-controls">
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌎 ES</button>
     <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
@@ -151,30 +165,13 @@ body.dark .tag.im{color:#a0c4ff;background:rgba(160,196,255,.07);border-color:rg
   </div>
 </header>
 
-<div class="em-bar">
-  <div class="em-left">
-    <span style="font-size:17px">🚨</span>
-    <div>
-      <div class="em-txt" id="emTxt">Emergency?</div>
-      <div class="em-sub" id="emSub">Crisis lines open 24 / 7</div>
-    </div>
-  </div>
-  <a class="em-btn" id="emBtn" href="tel:911">Call 911</a>
-</div>
-
 <div class="hero">
-  <div class="hero-eye" id="heroEye">Feeding Our Relatives Program</div>
+  <div class="hero-eye" id="heroEye">Empowering Our Relatives Program</div>
   <h1 id="heroH1">Find <em>Free</em> Help<br>Near You in DC</h1>
   <p id="heroP">Tap what you need. We'll show you what's open.</p>
 </div>
 
 <div class="filters">
-  <div id="catLabel" class="flabel">What do you need?</div>
-  <div class="cat-grid" id="catGrid"></div>
-
-  <div id="dayLabel" class="flabel">Which day?</div>
-  <div class="day-row" id="dayRow"></div>
-
   <div class="open-row">
     <button class="open-toggle" id="openToggle" onclick="toggleOpen()">
       <div class="dot"></div>
@@ -182,28 +179,49 @@ body.dark .tag.im{color:#a0c4ff;background:rgba(160,196,255,.07);border-color:rg
     </button>
   </div>
 
+  <div id="catLabel" class="flabel">What do you need?</div>
+  <div class="cat-grid" id="catGrid"></div>
+
+  <div id="dayLabel" class="flabel">Which day?</div>
+  <div class="day-row" id="dayRow"></div>
+
+  <div id="timeLabel" class="flabel">What time?</div>
+  <div class="time-row">
+    <span class="time-label" id="fromLbl">From</span>
+    <input class="time-input" type="time" id="timeFrom" onchange="render()">
+    <span class="time-sep">–</span>
+    <span class="time-label" id="toLbl">To</span>
+    <input class="time-input" type="time" id="timeTo" onchange="render()">
+  </div>
+
   <div class="search-wrap">
     <input class="search" id="srch" type="text" placeholder="🔍  Search by name or keyword…" oninput="render()">
   </div>
 </div>
 
-<div class="rbar">
+<div class="view-bar">
   <div class="rcount"><b id="rnum">–</b><span id="foundTxt"> resources found</span></div>
-  <button class="clr-btn" id="clrBtn" onclick="clearAll()">✕ Clear all</button>
+  <div class="right-bar">
+    <button class="clr-btn" id="clrBtn" onclick="clearAll()">✕ Clear all</button>
+    <div class="view-toggle">
+      <button class="vt-btn active" id="listBtn" onclick="setView('list')">☰ <span id="listLbl">List</span></button>
+      <button class="vt-btn" id="mapBtn" onclick="setView('map')">🗺 <span id="mapLbl">Map</span></button>
+    </div>
+  </div>
 </div>
 
-<div class="cards" id="cards"><div class="loading"><div class="spinner"></div><p id="loadingTxt">Loading resources…</p></div></div>
-<div class="empty" id="empty">
-  <div class="ei">🔍</div>
-  <h3 id="emptyH">No results</h3>
-  <p id="emptyP">Try removing a filter or changing your search.</p>
+<div id="listView">
+  <div class="cards" id="cards"><div class="loading"><div class="spinner"></div><p id="loadingTxt">Loading resources…</p></div></div>
+  <div class="empty" id="empty">
+    <div class="ei">🔍</div>
+    <h3 id="emptyH">No results</h3>
+    <p id="emptyP">Try removing a filter or changing your search.</p>
+  </div>
 </div>
 
-<div class="bnav">
-  <div class="ni on"><div class="nicon">🔍</div><div class="nlbl" id="nav1">Find Help</div></div>
-  <div class="ni"><div class="nicon">🗺️</div><div class="nlbl" id="nav2">Map</div></div>
-  <div class="ni"><div class="nicon">🚨</div><div class="nlbl" id="nav3">Emergency</div></div>
-  <div class="ni"><div class="nicon">ℹ️</div><div class="nlbl" id="nav4">About</div></div>
+<div id="mapView">
+  <div class="map-warning" id="mapWarning">⚠️ Map shows organizations with a physical address. Hotlines and phone-only resources are not shown on the map.</div>
+  <div id="gmap"></div>
 </div>
 
 <script>
@@ -288,84 +306,73 @@ const DATA=[
   {name:"Best Buddies",cats:["Jobs"],phone:"",addr:"",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"People with learning disabilities",lang:"",site:"",notes:""},
 ];
 
-// ── TRANSLATIONS ─────────────────────────────────────────────
 const TX = {
-  en: {
-    subTitle:"Resource Finder · DC", emTxt:"Emergency?", emSub:"Crisis lines open 24 / 7",
-    emBtn:"Call 911", heroEye:"Feeding Our Relatives Program",
+  en:{
+    heroEye:"Empowering Our Relatives Program",
     heroH1:'Find <em>Free</em> Help<br>Near You in DC',
     heroP:"Tap what you need. We'll show you what's open.",
-    catLabel:"What do you need?", dayLabel:"Which day?",
-    openOff:"Show Open Now", openOn:"Open Now Only",
-    foundTxt:" resources found", clrBtn:"✕ Clear all",
-    emptyH:"No results", emptyP:"Try removing a filter or changing your search.",
-    loadingTxt:"Loading resources…", nav1:"Find Help", nav2:"Map", nav3:"Emergency", nav4:"About",
+    catLabel:"What do you need?",dayLabel:"Which day?",timeLabel:"What time?",
+    fromLbl:"From",toLbl:"To",
+    openOff:"Show Open Now",openOn:"Open Now Only",
+    foundTxt:" resources found",clrBtn:"✕ Clear all",
+    emptyH:"No results",emptyP:"Try removing a filter or changing your search.",
+    loadingTxt:"Loading resources…",listLbl:"List",mapLbl:"Map",
+    mapWarning:"⚠️ Map shows organizations with a physical address. Hotlines and phone-only resources are not shown on the map.",
     srchPh:"🔍  Search by name or keyword…",
-    badge:{always:"24 / 7", open:"Open Now", closed:"Closed Now", callhrs:"Call for hours"},
-    btn:{call:"📞 Call", dir:"🗺️ Directions", web:"🌐 Website"},
-    tag:{sp:"🌎 Spanish", wo:"👩 Women", ve:"🎖️ Veterans", lg:"🏳️‍🌈 LGBTQ+", im:"🌍 Immigrants"},
-    catNames:{
-      "Emergency":"Emergency","Family Shelter":"Family Shelter","Food":"Food","Clothing":"Clothing",
-      "Laundry":"Laundry","Supportive Services":"Support","Domestic Violence & Trafficking":"DV & Safety",
-      "Special Services":"Special Svcs","Immigration Legal":"Immigration",
-      "Mental Health / Substance Abuse":"Mental Health","Health Clinic":"Health",
-      "Youth Services":"Youth","Veterans":"Veterans","Jobs":"Jobs","Housing":"Housing","__all__":"Show All"
-    },
-    days:{All:"Any Day",Mon:"Monday",Tue:"Tuesday",Wed:"Wednesday",Thu:"Thursday",Fri:"Friday",Sat:"Saturday",Sun:"Sunday"}
+    badge:{always:"24 / 7",open:"Open Now",closed:"Closed Now",callhrs:"Call for hours"},
+    btn:{call:"📞 Call",dir:"🗺️ Directions",web:"🌐 Website"},
+    tag:{sp:"🌎 Spanish",wo:"👩 Women",ve:"🎖️ Veterans",lg:"🏳️‍🌈 LGBTQ+",im:"🌍 Immigrants"},
+    catNames:{"Emergency":"Emergency","Family Shelter":"Family Shelter","Food":"Food","Clothing":"Clothing","Laundry":"Laundry","Supportive Services":"Support","Domestic Violence & Trafficking":"DV & Safety","Special Services":"Special Svcs","Immigration Legal":"Immigration","Mental Health / Substance Abuse":"Mental Health","Health Clinic":"Health","Youth Services":"Youth","Veterans":"Veterans","Jobs":"Jobs","Housing":"Housing","__all__":"Clear"},
+    days:{All:"Any",Mon:"Mon",Tue:"Tue",Wed:"Wed",Thu:"Thu",Fri:"Fri",Sat:"Sat",Sun:"Sun"}
   },
-  es: {
-    subTitle:"Buscador de Recursos · DC", emTxt:"¿Emergencia?", emSub:"Líneas de crisis 24 / 7",
-    emBtn:"Llamar 911", heroEye:"Programa Alimentando a Nuestros Familiares",
+  es:{
+    heroEye:"Programa Empoderando a Nuestros Familiares",
     heroH1:'Encuentra <em>Ayuda Gratis</em><br>Cerca de Ti en DC',
     heroP:"Toca lo que necesitas. Te mostraremos qué está abierto.",
-    catLabel:"¿Qué necesitas?", dayLabel:"¿Qué día?",
-    openOff:"Mostrar Abierto Ahora", openOn:"Solo Abierto Ahora",
-    foundTxt:" recursos encontrados", clrBtn:"✕ Borrar todo",
-    emptyH:"Sin resultados", emptyP:"Intenta quitar un filtro o cambiar tu búsqueda.",
-    loadingTxt:"Cargando recursos…", nav1:"Buscar", nav2:"Mapa", nav3:"Emergencia", nav4:"Acerca",
+    catLabel:"¿Qué necesitas?",dayLabel:"¿Qué día?",timeLabel:"¿A qué hora?",
+    fromLbl:"Desde",toLbl:"Hasta",
+    openOff:"Mostrar Abierto Ahora",openOn:"Solo Abierto Ahora",
+    foundTxt:" recursos encontrados",clrBtn:"✕ Borrar todo",
+    emptyH:"Sin resultados",emptyP:"Intenta quitar un filtro o cambiar tu búsqueda.",
+    loadingTxt:"Cargando recursos…",listLbl:"Lista",mapLbl:"Mapa",
+    mapWarning:"⚠️ El mapa muestra organizaciones con dirección física. Las líneas de ayuda no aparecen en el mapa.",
     srchPh:"🔍  Buscar por nombre o palabra clave…",
-    badge:{always:"24 / 7", open:"Abierto", closed:"Cerrado", callhrs:"Llamar para horario"},
-    btn:{call:"📞 Llamar", dir:"🗺️ Cómo Llegar", web:"🌐 Sitio Web"},
-    tag:{sp:"🌎 Español", wo:"👩 Mujeres", ve:"🎖️ Veteranos", lg:"🏳️‍🌈 LGBTQ+", im:"🌍 Inmigrantes"},
-    catNames:{
-      "Emergency":"Emergencia","Family Shelter":"Refugio Familiar","Food":"Comida","Clothing":"Ropa",
-      "Laundry":"Lavandería","Supportive Services":"Apoyo","Domestic Violence & Trafficking":"VD y Tráfico",
-      "Special Services":"Servicios Esp.","Immigration Legal":"Inmigración",
-      "Mental Health / Substance Abuse":"Salud Mental","Health Clinic":"Clínica",
-      "Youth Services":"Jóvenes","Veterans":"Veteranos","Jobs":"Empleos","Housing":"Vivienda","__all__":"Ver Todo"
-    },
-    days:{All:"Cualquier Día",Mon:"Lunes",Tue:"Martes",Wed:"Miércoles",Thu:"Jueves",Fri:"Viernes",Sat:"Sábado",Sun:"Domingo"}
+    badge:{always:"24 / 7",open:"Abierto",closed:"Cerrado",callhrs:"Llamar para horario"},
+    btn:{call:"📞 Llamar",dir:"🗺️ Cómo Llegar",web:"🌐 Sitio Web"},
+    tag:{sp:"🌎 Español",wo:"👩 Mujeres",ve:"🎖️ Veteranos",lg:"🏳️‍🌈 LGBTQ+",im:"🌍 Inmigrantes"},
+    catNames:{"Emergency":"Emergencia","Family Shelter":"Refugio Familiar","Food":"Comida","Clothing":"Ropa","Laundry":"Lavandería","Supportive Services":"Apoyo","Domestic Violence & Trafficking":"VD y Tráfico","Special Services":"Servicios Esp.","Immigration Legal":"Inmigración","Mental Health / Substance Abuse":"Salud Mental","Health Clinic":"Clínica","Youth Services":"Jóvenes","Veterans":"Veteranos","Jobs":"Empleos","Housing":"Vivienda","__all__":"Borrar"},
+    days:{All:"Todos",Mon:"Lun",Tue:"Mar",Wed:"Mié",Thu:"Jue",Fri:"Vie",Sat:"Sáb",Sun:"Dom"}
   }
 };
 
 const CAT_ICON={"Emergency":"🚨","Family Shelter":"👨‍👩‍👧","Food":"🍽️","Clothing":"👕","Laundry":"🧺","Supportive Services":"🤝","Domestic Violence & Trafficking":"🛡️","Special Services":"🌐","Immigration Legal":"⚖️","Mental Health / Substance Abuse":"🧠","Health Clinic":"🏥","Youth Services":"🌟","Veterans":"🎖️","Jobs":"💼","Housing":"🏠"};
-const CAT_ORDER=["Emergency","Food","Clothing","Housing","Health Clinic","Laundry","Jobs","Mental Health / Substance Abuse","Supportive Services","Domestic Violence & Trafficking","Immigration Legal","Special Services","Youth Services","Veterans","Family Shelter"];
+const CAT_ORDER=["Food","Clothing","Laundry","Housing","Emergency","Health Clinic","Jobs","Mental Health / Substance Abuse","Supportive Services","Domestic Violence & Trafficking","Immigration Legal","Special Services","Youth Services","Veterans","Family Shelter"];
 const DAYS_ORDER=["All","Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 
-// ── STATE ─────────────────────────────────────────────────────
-let activeCat=null, activeDay="All", openOnly=false, lang="en", dark=false;
+// ── STATE — multi-select ──────────────────────────────────────
+let activeCats=new Set(), activeDays=new Set(),
+    openOnly=false, lang="en", dark=false, currentView="list";
 
-// ── TIME HELPERS ──────────────────────────────────────────────
+// ── TIME ──────────────────────────────────────────────────────
 function nowH(){const d=new Date();return d.getHours()+d.getMinutes()/60;}
 function todayD(){return["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][new Date().getDay()];}
+function timeStrToH(s){if(!s)return null;const[h,m]=s.split(':').map(Number);return h+m/60;}
 
-// FIX 1: Improved isOpen — resources with no day info show a "Call for hours" badge
-// They are NEVER filtered out by day filter — we show them with a neutral badge instead
 function getStatus(r){
   if(r.x) return 'always';
-  if(!r.days.length) return 'callhrs';   // <-- FIX: no day info = call for hours, not "closed"
-  const h=nowH(), d=todayD();
+  if(!r.days.length) return 'callhrs';
+  const h=nowH(),d=todayD();
   if(!r.days.includes(d)) return 'closed';
-  if(r.oH===0 && r.cH===0) return 'callhrs';  // has days but no specific times
-  return (r.oH<=h && r.cH>h) ? 'open' : 'closed';
+  if(r.oH===0&&r.cH===0) return 'callhrs';
+  return (r.oH<=h&&r.cH>h)?'open':'closed';
 }
 
 // ── THEME ─────────────────────────────────────────────────────
 function toggleTheme(){
-  dark=!dark;
-  document.body.classList.toggle('dark',dark);
+  dark=!dark;document.body.classList.toggle('dark',dark);
   document.getElementById('themeBtn').textContent=dark?'☀️':'🌙';
   localStorage.setItem('drTheme',dark?'dark':'light');
+  if(currentView==='map') renderMap(getFiltered());
 }
 
 // ── LANGUAGE ──────────────────────────────────────────────────
@@ -374,67 +381,51 @@ function toggleLang(){
   const b=document.getElementById('langBtn');
   b.textContent=lang==='en'?'🌎 ES':'🌎 EN';
   b.classList.toggle('es-on',lang==='es');
-  applyLang();
-  buildUI();   // rebuild category + day buttons with translated labels
-  render();
+  applyLang(); buildUI(); render();
 }
 
 function applyLang(){
   const t=TX[lang];
-  // Update all static text by ID — no innerHTML overwriting of elements with children
-  document.getElementById('subTitle').textContent=t.subTitle;
-  document.getElementById('emTxt').textContent=t.emTxt;
-  document.getElementById('emSub').textContent=t.emSub;
-  document.getElementById('emBtn').textContent=t.emBtn;
-  document.getElementById('heroEye').textContent=t.heroEye;
+  const map={heroEye:t.heroEye,heroP:t.heroP,catLabel:t.catLabel,dayLabel:t.dayLabel,
+    timeLabel:t.timeLabel,fromLbl:t.fromLbl,toLbl:t.toLbl,foundTxt:t.foundTxt,
+    clrBtn:t.clrBtn,emptyH:t.emptyH,emptyP:t.emptyP,loadingTxt:t.loadingTxt,
+    listLbl:t.listLbl,mapLbl:t.mapLbl,mapWarning:t.mapWarning};
+  for(const[id,val]of Object.entries(map)){const el=document.getElementById(id);if(el)el.textContent=val;}
   document.getElementById('heroH1').innerHTML=t.heroH1;
-  document.getElementById('heroP').textContent=t.heroP;
-  document.getElementById('catLabel').textContent=t.catLabel;
-  document.getElementById('dayLabel').textContent=t.dayLabel;
   document.getElementById('openTxt').textContent=openOnly?t.openOn:t.openOff;
-  document.getElementById('foundTxt').textContent=t.foundTxt;
-  document.getElementById('clrBtn').textContent=t.clrBtn;
-  document.getElementById('emptyH').textContent=t.emptyH;
-  document.getElementById('emptyP').textContent=t.emptyP;
-  document.getElementById('loadingTxt').textContent=t.loadingTxt;
-  document.getElementById('nav1').textContent=t.nav1;
-  document.getElementById('nav2').textContent=t.nav2;
-  document.getElementById('nav3').textContent=t.nav3;
-  document.getElementById('nav4').textContent=t.nav4;
   document.getElementById('srch').placeholder=t.srchPh;
 }
 
-// ── BUILD FILTER UI ───────────────────────────────────────────
-// FIX 2: Build both cat buttons AND day buttons from JS
-// so they are fully rebuilt on language switch with correct labels
+// ── BUILD FILTERS ─────────────────────────────────────────────
 function buildUI(){
   const t=TX[lang];
-
-  // Category buttons
-  const all=new Set();
-  DATA.forEach(r=>r.cats.forEach(c=>all.add(c)));
+  const all=new Set(); DATA.forEach(r=>r.cats.forEach(c=>all.add(c)));
   const sorted=[...CAT_ORDER.filter(c=>all.has(c)),...[...all].filter(c=>!CAT_ORDER.includes(c))];
+  // category grid — multi select, plus clear button
   document.getElementById('catGrid').innerHTML=
-    sorted.map(c=>`<button class="cat-btn${activeCat===c?' on':''}" data-cat="${c}" onclick="setCat(this)"><span class="ci">${CAT_ICON[c]||'📍'}</span><span class="cl">${t.catNames[c]||c}</span></button>`).join('')+
-    `<button class="cat-btn" data-cat="__all__" onclick="clearAll()"><span class="ci">✨</span><span class="cl">${t.catNames['__all__']}</span></button>`;
-
-  // Day buttons — fully rebuilt so labels translate correctly
+    sorted.map(c=>`<button class="cat-btn${activeCats.has(c)?' on':''}" data-cat="${c}" onclick="toggleCat(this)"><span class="ci">${CAT_ICON[c]||'📍'}</span><span class="cl">${t.catNames[c]||c}</span></button>`).join('')+
+    `<button class="cat-btn${activeCats.size===0?' on':''}" data-cat="__all__" onclick="clearCats()"><span class="ci">✨</span><span class="cl">${t.catNames['__all__']}</span></button>`;
+  // day row — multi select, All = none selected
   document.getElementById('dayRow').innerHTML=
-    DAYS_ORDER.map(d=>`<button class="day-btn${activeDay===d?' on':''}" data-day="${d}" onclick="setDay(this)">${t.days[d]}</button>`).join('');
+    DAYS_ORDER.map(d=>{
+      const isAll=d==='All', isOn=isAll?(activeDays.size===0):activeDays.has(d);
+      return `<button class="day-btn${isOn?' on':''}" data-day="${d}" onclick="toggleDay(this)">${t.days[d]}</button>`;
+    }).join('');
 }
 
 // ── FILTER ACTIONS ────────────────────────────────────────────
-function setCat(btn){
-  // FIX 3: Toggle off if same category clicked again
-  activeCat=(activeCat===btn.dataset.cat)?null:btn.dataset.cat;
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.toggle('on', b.dataset.cat===activeCat));
-  render();
+function toggleCat(btn){
+  const c=btn.dataset.cat;
+  if(activeCats.has(c)) activeCats.delete(c); else activeCats.add(c);
+  buildUI(); render();
 }
+function clearCats(){activeCats.clear();buildUI();render();}
 
-function setDay(btn){
-  activeDay=btn.dataset.day;
-  document.querySelectorAll('.day-btn').forEach(b=>b.classList.toggle('on', b.dataset.day===activeDay));
-  render();
+function toggleDay(btn){
+  const d=btn.dataset.day;
+  if(d==='All'){activeDays.clear();}
+  else{if(activeDays.has(d))activeDays.delete(d);else activeDays.add(d);}
+  buildUI(); render();
 }
 
 function toggleOpen(){
@@ -444,35 +435,39 @@ function toggleOpen(){
   render();
 }
 
-// FIX 4: clearAll resets EVERYTHING including day back to "All"
 function clearAll(){
-  activeCat=null; activeDay="All"; openOnly=false;
+  activeCats.clear(); activeDays.clear(); openOnly=false;
   document.getElementById('openToggle').classList.remove('on');
   document.getElementById('openTxt').textContent=TX[lang].openOff;
   document.getElementById('srch').value='';
-  buildUI();   // rebuilds buttons with correct active states
-  render();
+  document.getElementById('timeFrom').value='';
+  document.getElementById('timeTo').value='';
+  buildUI(); render();
 }
 
-// ── RENDER ────────────────────────────────────────────────────
-function render(){
-  const t=TX[lang];
+// ── GET FILTERED — food floats to top when no category filter ─
+function getFiltered(){
   const q=(document.getElementById('srch').value||'').toLowerCase();
+  const fromH=timeStrToH(document.getElementById('timeFrom').value);
+  const toH=timeStrToH(document.getElementById('timeTo').value);
 
-  const list=DATA.filter(r=>{
-    // Category filter
-    if(activeCat && !r.cats.includes(activeCat)) return false;
-    // FIX 5: Day filter — resources with NO day info (callhrs) are ALWAYS shown
-    // They can't be filtered by day because we don't know their schedule
-    if(activeDay!=='All'){
-      const status=getStatus(r);
-      if(status!=='callhrs' && !r.days.includes(activeDay)) return false;
-      // callhrs resources still show through day filter with their neutral badge
+  let list=DATA.filter(r=>{
+    // Category: multi-select OR (none selected = show all)
+    if(activeCats.size>0 && !r.cats.some(c=>activeCats.has(c))) return false;
+    // Day: multi-select. callhrs resources always pass day filter
+    if(activeDays.size>0){
+      const st=getStatus(r);
+      if(st!=='callhrs' && !r.days.some(d=>activeDays.has(d))) return false;
     }
-    // FIX 6: Open Now filter — callhrs resources are excluded since we can't know if open
-    if(openOnly){
-      const status=getStatus(r);
-      if(status!=='always' && status!=='open') return false;
+    // Open Now
+    if(openOnly){const st=getStatus(r);if(st!=='always'&&st!=='open')return false;}
+    // Time filter: show resource if its hours overlap with the requested window
+    if(fromH!==null||toH!==null){
+      // callhrs / 24-7 resources always pass time filter
+      if(!r.x&&r.oH!==0&&r.cH!==0){
+        if(fromH!==null&&r.cH<=fromH) return false; // closes before from
+        if(toH!==null&&r.oH>=toH) return false;     // opens after to
+      }
     }
     // Search
     if(q){
@@ -482,43 +477,202 @@ function render(){
     return true;
   });
 
-  const hasF=activeCat||activeDay!=='All'||openOnly||q;
+  // When no category filter active: sort food first
+  if(activeCats.size===0){
+    list.sort((a,b)=>{
+      const aFood=a.cats.includes('Food')?0:1;
+      const bFood=b.cats.includes('Food')?0:1;
+      return aFood-bFood;
+    });
+  }
+  return list;
+}
+
+// ── VIEW TOGGLE ───────────────────────────────────────────────
+function setView(v){
+  currentView=v;
+  document.getElementById('listView').style.display=v==='list'?'block':'none';
+  document.getElementById('mapView').classList.toggle('visible',v==='map');
+  document.getElementById('listBtn').classList.toggle('active',v==='list');
+  document.getElementById('mapBtn').classList.toggle('active',v==='map');
+  if(v==='map') renderMap(getFiltered());
+}
+
+// ── GOOGLE MAPS EMBED ─────────────────────────────────────────
+// Uses free Google Maps embed (no API key needed for basic embed)
+// Falls back to Leaflet with OSM if iframe doesn't work
+const GEOCODE = {
+  "1700 Marion Barry Ave SE":[38.8724,-76.9901],
+  "1525 7th Street NW":[38.9109,-77.0219],
+  "1830 Connecticut Ave NW":[38.9205,-77.0454],
+  "1525 Newton St. NW":[38.9315,-77.0316],
+  "40 New Jersey Ave NW":[38.8973,-77.0130],
+  "2401 Virginia Ave NW":[38.8997,-77.0536],
+  "1333 N Street NW":[38.9060,-77.0282],
+  "16th St & Park St NW":[38.9323,-77.0369],
+  "71 O St NW":[38.9099,-77.0224],
+  "900 N. Capitol St. NW":[38.9000,-77.0097],
+  "1041 Wisconsin Ave NW":[38.9044,-77.0632],
+  "415 2nd St NE, 3rd Floor":[38.8961,-77.0038],
+  "2210 Adams Place NE":[38.9214,-76.9767],
+  "1313 New York Ave NW":[38.9005,-77.0302],
+  "4713 Wisconsin Ave NW":[38.9546,-77.0782],
+  "50 Massachusetts Ave NE":[38.8977,-77.0061],
+  "1338 G Street SE":[38.8808,-76.9934],
+  "500 Indiana Ave NW, Room 4550":[38.8953,-77.0176],
+  "1320 Southern Ave SE, Room 311":[38.8455,-76.9736],
+  "1990 K St NW, Suite 500":[38.9011,-77.0421],
+  "700 Pennsylvania Ave SE, 2nd Floor":[38.8826,-76.9970],
+  "924 G St NW":[38.8990,-77.0228],
+  "1250 H St NW, Suite 520":[38.9002,-77.0282],
+  "1377 R St NW, Suite 200":[38.9139,-77.0316],
+  "1411 K St NW, Suite 200":[38.9011,-77.0302],
+  "1025 Connecticut Ave NW, Suite 701":[38.9030,-77.0421],
+  "600 New Jersey Ave NW, Suite 332":[38.8973,-77.0130],
+  "1400 16th St NW, Suite 210":[38.9185,-77.0369],
+  "1460 Columbia Rd NW, Suite C-1":[38.9271,-77.0369],
+  "1400 20th St NW #G4":[38.9153,-77.0421],
+  "2000 G St NW":[38.8997,-77.0481],
+  "825 21st St NW PMB 253":[38.9008,-77.0470],
+  "4300 Nebraska Ave NW, Suite Y265":[38.9455,-77.0782],
+  "65 Massachusetts Ave NW":[38.9001,-77.0093],
+  "425 2nd St NW":[38.8985,-77.0137],
+  "4515 Edson Pl. NE":[38.9283,-76.9679],
+  "1355 New York Ave NE":[38.9005,-76.9767],
+  "1151 Bladensburg Road NE":[38.9094,-76.9767],
+  "2001 Mississippi Ave SE":[38.8469,-76.9901],
+  "1419 Columbia Rd NW":[38.9271,-77.0316],
+  "741 8th St SE":[38.8797,-76.9934],
+  "410 7th Street SE":[38.8826,-76.9934],
+  "900 Rhode Island Ave NE":[38.9183,-76.9901],
+  "1500 Franklin Street NE":[38.9199,-76.9767],
+  "5100 Wisconsin Ave NW, Suite 520":[38.9568,-77.0866],
+  "1234 Massachusetts Ave NW, Suite C-1015":[38.9011,-77.0316],
+  "1526 Pennsylvania Ave SE":[38.8809,-76.9747],
+  "920-A Rhode Island Ave NE":[38.9283,-76.9901],
+  "8151 15th Ave, Langley Park MD":[38.9832,-76.9822]
+};
+
+function renderMap(list){
+  const withAddr=list.filter(r=>r.addr&&GEOCODE[r.addr]);
+  const mapDiv=document.getElementById('gmap');
+  if(!withAddr.length){
+    mapDiv.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;height:320px;font-family:'Montserrat',sans-serif;font-size:13px;color:var(--text3);text-align:center;padding:20px;">No mapped organizations match your filters.<br>Try clearing filters or switching to List view.</div>`;
+    return;
+  }
+  mapDiv.innerHTML='<div id="leafmap" style="width:100%;height:100%;"></div>';
+  if(!window.L){
+    const lnk=document.createElement('link');lnk.rel='stylesheet';lnk.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';document.head.appendChild(lnk);
+    const sc=document.createElement('script');sc.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';sc.onload=()=>buildLeaflet(withAddr);document.head.appendChild(sc);
+  } else {buildLeaflet(withAddr);}
+}
+
+function buildLeaflet(orgs){
+  const container=document.getElementById('leafmap');
+  if(!container)return;
+  if(container._leaflet_id){try{window._drMap&&window._drMap.remove();}catch(e){}}
+  const isDark=document.body.classList.contains('dark');
+  const tile=isDark?'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png':'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+  const map=window.L.map('leafmap',{zoomControl:true,scrollWheelZoom:true}).setView([38.9072,-77.0369],12);
+  window._drMap=map;
+  window.L.tileLayer(tile,{attribution:'© <a href="https://www.openstreetmap.org">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',subdomains:'abcd',maxZoom:19}).addTo(map);
+
+  // Small aesthetic dot pin
+  function makeIcon(color){
+    return window.L.divIcon({
+      className:'',
+      html:`<div style="width:14px;height:14px;background:${color};border:2.5px solid #fff;border-radius:50%;box-shadow:0 1px 6px rgba(0,0,0,0.35);"></div>`,
+      iconSize:[14,14],iconAnchor:[7,7],popupAnchor:[0,-10]
+    });
+  }
+
+  const t=TX[lang], CL=t.catNames;
+  const bounds=[];
+  orgs.forEach(r=>{
+    const coords=GEOCODE[r.addr];if(!coords)return;
+    bounds.push(coords);
+    const st=getStatus(r);
+    const pinColor=st==='always'||st==='open'?'#2a7a4b':st==='closed'?'#b83232':'#2e5fa3';
+    const badgeColor=pinColor;
+    const bdgText=t.badge[st];
+    const allSvcs=r.cats.map(c=>CL[c]||c).join(' · ');
+    const mapsUrl=`https://maps.google.com/?q=${encodeURIComponent(r.addr+' Washington DC')}`;
+    const popup=`<div style="font-family:'Open Sans',sans-serif;min-width:200px;max-width:240px;">
+      <div style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;color:#1a2535;line-height:1.3;margin-bottom:4px;">${r.name}</div>
+      <div style="font-size:10px;color:#2e5fa3;font-family:'Montserrat',sans-serif;font-weight:700;margin-bottom:6px;line-height:1.4;">${allSvcs}</div>
+      <span style="display:inline-block;background:${badgeColor}18;color:${badgeColor};border:1px solid ${badgeColor}44;padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700;font-family:'Montserrat',sans-serif;text-transform:uppercase;margin-bottom:6px;">${bdgText}</span>
+      ${r.addr?`<div style="font-size:11px;color:#3a4a5c;margin-bottom:6px;">📍 ${r.addr}</div>`:''}
+      <div style="font-size:11px;color:#3a4a5c;margin-bottom:8px;">🕐 ${r.hours}</div>
+      <a href="${mapsUrl}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:#2e5fa3;color:#fff;padding:6px 12px;border-radius:15px;font-size:10px;font-weight:700;font-family:'Montserrat',sans-serif;text-decoration:none;">🗺️ ${t.btn.dir}</a>
+      ${r.phone&&r.phone!=='No phone'?` <a href="tel:${r.phone}" style="display:inline-flex;align-items:center;gap:5px;background:#2a7a4b;color:#fff;padding:6px 12px;border-radius:15px;font-size:10px;font-weight:700;font-family:'Montserrat',sans-serif;text-decoration:none;margin-left:4px;">${t.btn.call}</a>`:''}
+    </div>`;
+    window.L.marker(coords,{icon:makeIcon(pinColor)}).addTo(map).bindPopup(popup,{maxWidth:260});
+  });
+  if(bounds.length>1)map.fitBounds(bounds,{padding:[30,30]});
+  else if(bounds.length===1)map.setView(bounds[0],15);
+}
+
+// ── RENDER CARDS ──────────────────────────────────────────────
+function render(){
+  const list=getFiltered();
+  const t=TX[lang];
+  const hasF=activeCats.size>0||activeDays.size>0||openOnly||
+    document.getElementById('srch').value||
+    document.getElementById('timeFrom').value||
+    document.getElementById('timeTo').value;
   document.getElementById('clrBtn').style.display=hasF?'block':'none';
   document.getElementById('rnum').textContent=list.length;
   document.getElementById('hdrBadge').textContent=list.length+(lang==='es'?' Recursos':' Resources');
-
-  const wrap=document.getElementById('cards'), emp=document.getElementById('empty');
+  if(currentView==='map'){renderMap(list);return;}
+  const wrap=document.getElementById('cards'),emp=document.getElementById('empty');
   if(!list.length){wrap.innerHTML='';emp.style.display='block';return;}
   emp.style.display='none';
-
-  const bl=t.btn, tl=t.tag, bdg=t.badge, CL=t.catNames;
-
+  const bl=t.btn,tl=t.tag,bdg=t.badge,CL=t.catNames;
   wrap.innerHTML=list.map(r=>{
-    const status=getStatus(r);
-    // FIX 7: Show correct badge for each status including callhrs
-    const bt=bdg[status];
+    const st=getStatus(r),bt=bdg[st];
+    // All services as chips — highlight active ones in green
+    const svcsHtml=r.cats.map(c=>{
+      const isActive=activeCats.has(c);
+      return `<span class="svc-chip${isActive?' active':''}">${CAT_ICON[c]||''} ${CL[c]||c}</span>`;
+    }).join('');
     let tags='';
-    if(r.lang==='Spanish') tags+=`<span class="tag sp">${tl.sp}</span>`;
+    if(r.lang==='Spanish')tags+=`<span class="tag sp">${tl.sp}</span>`;
     const wl=r.who.toLowerCase();
-    if(wl.includes('women')||wl.includes('woman')) tags+=`<span class="tag wo">${tl.wo}</span>`;
-    if(wl.includes('veteran')) tags+=`<span class="tag ve">${tl.ve}</span>`;
-    if(wl.includes('lgbtq')) tags+=`<span class="tag lg">${tl.lg}</span>`;
-    if(wl.includes('immigrant')) tags+=`<span class="tag im">${tl.im}</span>`;
-    if(r.cats.length>1) tags+=`<span class="tag">+${r.cats.slice(1).map(c=>CL[c]||c).join(', ')}</span>`;
-    if(r.notes) tags+=`<span class="tag">${r.notes}</span>`;
+    if(wl.includes('women')||wl.includes('woman'))tags+=`<span class="tag wo">${tl.wo}</span>`;
+    if(wl.includes('veteran'))tags+=`<span class="tag ve">${tl.ve}</span>`;
+    if(wl.includes('lgbtq'))tags+=`<span class="tag lg">${tl.lg}</span>`;
+    if(wl.includes('immigrant'))tags+=`<span class="tag im">${tl.im}</span>`;
+    if(r.notes)tags+=`<span class="tag">${r.notes}</span>`;
     const mu=r.addr?`https://maps.google.com/?q=${encodeURIComponent(r.addr+' Washington DC')}`:'';
     const su=r.site?(r.site.startsWith('http')?r.site:'https://'+r.site):'';
     const hasA=(r.phone&&r.phone!=='No phone')||mu||su;
-    return `<div class="card"><div class="ctop"><div class="cleft"><div class="ccat">${CAT_ICON[r.cats[0]]||'📍'} ${CL[r.cats[0]]||r.cats[0]}</div><div class="cname">${r.name}</div><div class="cwho">${r.who}</div></div><span class="badge ${status}">${bt}</span></div><div class="cinfo"><div class="irow"><span class="ico">🕐</span>${r.hours}</div>${r.addr?`<div class="irow"><span class="ico">📍</span>${r.addr}</div>`:''}</div>${tags?`<div class="tags">${tags}</div>`:''}${hasA?`<div class="actions">${r.phone&&r.phone!=='No phone'?`<a class="abtn call" href="tel:${r.phone}">${bl.call}</a>`:''}${mu?`<a class="abtn dir" href="${mu}" target="_blank">${bl.dir}</a>`:''}${su?`<a class="abtn web" href="${su}" target="_blank">${bl.web}</a>`:''}</div>`:''}</div>`;
+    return `<div class="card">
+      <div class="ctop">
+        <div class="cleft">
+          <div class="cname">${r.name}</div>
+          <div class="services-row">${svcsHtml}</div>
+          ${r.who&&r.who!=='Everyone'?`<div class="cwho">👤 ${r.who}</div>`:''}
+        </div>
+        <span class="badge ${st}">${bt}</span>
+      </div>
+      <div class="cinfo">
+        <div class="irow"><span class="ico">🕐</span>${r.hours}</div>
+        ${r.addr?`<div class="irow"><span class="ico">📍</span>${r.addr}</div>`:''}
+      </div>
+      ${tags?`<div class="tags">${tags}</div>`:''}
+      ${hasA?`<div class="actions">
+        ${r.phone&&r.phone!=='No phone'?`<a class="abtn call" href="tel:${r.phone}">${bl.call}</a>`:''}
+        ${mu?`<a class="abtn dir" href="${mu}" target="_blank">${bl.dir}</a>`:''}
+        ${su?`<a class="abtn web" href="${su}" target="_blank">${bl.web}</a>`:''}
+      </div>`:''}
+    </div>`;
   }).join('');
 }
 
 // ── INIT ──────────────────────────────────────────────────────
 (function init(){
-  // Restore theme preference
   if(localStorage.getItem('drTheme')==='dark'){
-    dark=true;
-    document.body.classList.add('dark');
+    dark=true;document.body.classList.add('dark');
     document.getElementById('themeBtn').textContent='☀️';
   }
 })();
