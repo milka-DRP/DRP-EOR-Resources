@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Find Resources – Distant Relatives</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js). Tracking is on by default unless the visitor turns it off in the footer. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MRZK91HLBC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('consent', 'default', {
+    analytics_storage: localStorage.getItem('drTracking') === 'off' ? 'denied' : 'granted'
+  });
+  gtag('config', 'G-MRZK91HLBC');
+</script>
 <style>
 :root {
   --bg:#f2f5f8;--surface:#fff;--card:#fff;--border:#d8e2ec;
@@ -24,7 +35,7 @@ body.dark{
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:'Open Sans',sans-serif;min-height:100vh;transition:background .25s,color .25s;}
 
-/* HEADER — white banner with logo */
+/* HEADER */
 header{background:#fff;border-bottom:2px solid #e8edf3;padding:0 16px;position:sticky;top:0;z-index:300;display:flex;align-items:center;justify-content:space-between;height:64px;box-shadow:0 2px 10px rgba(0,0,0,0.10);}
 body.dark header{background:#111d2e;border-bottom-color:#1e3050;}
 .logo-img{height:48px;width:auto;object-fit:contain;}
@@ -32,7 +43,11 @@ body.dark header{background:#111d2e;border-bottom-color:#1e3050;}
 .hdr-badge{background:var(--primary-dim);border:1px solid var(--primary-bdr);color:var(--primary);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;padding:3px 9px;border-radius:20px;}
 .lang-btn{background:var(--primary-dim);border:1.5px solid var(--primary-bdr);color:var(--primary);font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:1px;padding:5px 11px;border-radius:20px;cursor:pointer;transition:all .2s;text-transform:uppercase;}
 .lang-btn.es-on{background:var(--primary);color:#fff;}
+.food-btn{background:var(--accent-dim);border:1.5px solid var(--accent-bdr);color:#8a6a1a;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:800;letter-spacing:.5px;padding:5px 10px;border-radius:20px;cursor:pointer;transition:all .2s;}
 .theme-btn{width:32px;height:32px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s;}
+
+/* QUICK EXIT */
+.qx{position:fixed;top:74px;right:10px;z-index:400;background:#b83232;color:#fff;border:none;border-radius:20px;padding:7px 12px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:800;letter-spacing:.5px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25);}
 
 /* HERO */
 .hero{background:linear-gradient(150deg,#1e4080 0%,#2e5fa3 60%,#3a72b8 100%);padding:24px 16px 20px;text-align:center;position:relative;overflow:hidden;}
@@ -52,7 +67,7 @@ body.dark header{background:#111d2e;border-bottom-color:#1e3050;}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
 .flabel{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--primary);margin-bottom:10px;}
 
-/* CAT GRID — multi select */
+/* CAT GRID */
 .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
 .cat-btn{background:var(--card);border:1.5px solid var(--border);border-radius:11px;padding:9px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all .15s;box-shadow:var(--shadow);}
 .cat-btn:active{transform:scale(.95);}
@@ -61,7 +76,7 @@ body.dark header{background:#111d2e;border-bottom-color:#1e3050;}
 .cat-btn .cl{font-size:8.5px;font-weight:700;color:var(--text2);text-align:center;line-height:1.2;font-family:'Montserrat',sans-serif;}
 .cat-btn.on .cl{color:var(--primary);}
 
-/* DAY — multi select */
+/* DAY */
 .day-row{display:flex;gap:5px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
 .day-row::-webkit-scrollbar{display:none;}
 .day-btn{flex-shrink:0;background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:5px 11px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--text3);cursor:pointer;transition:all .15s;}
@@ -97,12 +112,9 @@ body.dark header{background:#111d2e;border-bottom-color:#1e3050;}
 .ctop{padding:11px 13px 6px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
 .cleft{flex:1;min-width:0;}
 .cname{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;color:var(--text);line-height:1.3;margin-bottom:5px;}
-
-/* SERVICES CHIPS — show all, highlight active */
 .services-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0;}
 .svc-chip{display:inline-flex;align-items:center;gap:3px;border-radius:20px;padding:2px 7px;font-size:8.5px;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.3px;text-transform:uppercase;border:1px solid var(--border);background:var(--bg);color:var(--text3);}
 .svc-chip.active{background:var(--green-dim);border-color:var(--green-bdr);color:var(--green);}
-
 .cwho{font-size:10.5px;color:var(--text3);margin-top:4px;}
 .badge{flex-shrink:0;font-family:'Montserrat',sans-serif;font-size:8.5px;font-weight:700;padding:3px 8px;border-radius:20px;text-transform:uppercase;white-space:nowrap;margin-top:2px;}
 .badge.open{background:rgba(42,122,75,.12);color:var(--green);border:1px solid var(--green-bdr);}
@@ -111,11 +123,9 @@ body.dark header{background:#111d2e;border-bottom-color:#1e3050;}
 .badge.callhrs{background:var(--primary-dim);color:var(--primary);border:1px solid var(--primary-bdr);}
 body.dark .badge.open,body.dark .badge.always{background:rgba(76,175,125,.13);color:#4caf7d;border-color:rgba(76,175,125,.3);}
 body.dark .badge.closed{background:rgba(217,95,95,.10);color:#d95f5f;border-color:rgba(217,95,95,.25);}
-
 .cinfo{padding:4px 13px 6px;display:flex;flex-direction:column;gap:3px;}
 .irow{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:var(--text2);line-height:1.4;}
 .irow .ico{font-size:11px;flex-shrink:0;margin-top:1px;}
-
 .tags{padding:0 13px 8px;display:flex;flex-wrap:wrap;gap:4px;}
 .tag{background:var(--primary-dim);border:1px solid var(--border);border-radius:20px;padding:2px 7px;font-size:9px;color:var(--text3);font-family:'Montserrat',sans-serif;font-weight:600;}
 .tag.sp{color:#1a5fa0;border-color:rgba(26,95,160,.3);background:rgba(26,95,160,.08);}
@@ -128,7 +138,6 @@ body.dark .tag.wo{color:#f7aef7;background:rgba(247,174,247,.07);border-color:rg
 body.dark .tag.ve{color:#7ef7b8;background:rgba(126,247,184,.07);border-color:rgba(126,247,184,.3);}
 body.dark .tag.lg{color:#f9c86a;background:rgba(249,200,106,.07);border-color:rgba(249,200,106,.3);}
 body.dark .tag.im{color:#a0c4ff;background:rgba(160,196,255,.07);border-color:rgba(160,196,255,.3);}
-
 .actions{display:flex;border-top:1px solid var(--border);}
 .abtn{flex:1;padding:10px 6px;display:flex;align-items:center;justify-content:center;gap:4px;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--text3);text-decoration:none;transition:background .12s;}
 .abtn:not(:last-child){border-right:1px solid var(--border);}
@@ -152,13 +161,36 @@ body.dark .map-warning{background:#1e2a10;color:var(--text2);}
 .empty{text-align:center;padding:40px 20px;display:none;}
 .empty .ei{font-size:40px;margin-bottom:10px;}
 .empty h3{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800;margin-bottom:4px;color:var(--text);}
+
+/* FOOD POPUP */
+.fm{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;justify-content:center;align-items:flex-start;padding:70px 12px 12px;}
+.fm.on{display:flex;}
+.fm-box{background:var(--surface);color:var(--text);border-radius:14px;width:100%;max-width:460px;max-height:80vh;overflow-y:auto;padding:14px;}
+.fm-head{display:flex;justify-content:space-between;align-items:center;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:800;margin-bottom:10px;}
+.fm-head button{background:none;border:none;font-size:18px;cursor:pointer;color:var(--text);}
+.fm-days{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.fm-dbtn{background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:5px 10px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;color:var(--text3);cursor:pointer;}
+.fm-dbtn.on{background:var(--primary-dim);border-color:var(--primary);color:var(--primary);}
+.fm-row{border-top:1px solid var(--border);padding:10px 0;}
+.fm-name{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;}
+.fm-time{font-size:12px;color:var(--text2);margin:3px 0 6px;}
+.fm-links a{font-size:11px;font-weight:700;color:var(--primary);margin-right:14px;text-decoration:none;}
+.fm-empty{font-size:12px;color:var(--text3);padding:12px 0;}
+
+/* FOOTER */
+.ft{text-align:center;font-size:11px;color:var(--text3);padding:18px 16px 26px;border-top:1px solid var(--border);margin-top:10px;line-height:1.5;}
+.ft-link{background:none;border:none;color:var(--primary);text-decoration:underline;cursor:pointer;font-size:11px;margin-top:6px;}
 </style>
 </head>
 <body>
 
+<button class="qx" id="qxBtn" onclick="location.replace('https://weather.com')">Quick Exit</button>
+
 <header>
-  <img class="logo-img" src="data:image/jpeg;base64,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" alt="Distant Relatives">
+  <!-- REPLACE the src below with your original logo: copy the full <img class="logo-img" ...> line from your original file -->
+  <img class="logo-img" src="data:image/png;base64,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hhsijuxntRiYEdcdYIqGreBr2LChPXPmTELLLl26JABT5E87evTohDooQk888YRS2htvvDHhWXyROAMxMBPnI90rUXbsI488ouBD43788cct7N2V559/PgGY+fPnt6+88op7rMeNGzfa2rVrW3FX2qFDhyY8iy8SZyAGZuJ8BFewX5QaKOXp06f1/urVq22FChUUWKKN2zvuuENZ9A8//GBfffXVBGCKHdOKgV2VnO+//97OmTNHlR9ACdunTVzSn4HYXJTWUMGP1bz99ttm4cKF5uTJk6ZOnToG049o1Wo0f+6558zu3bu15eWXX27q1atnMKjjhnRFFB3Tr18/c8UVV5ilS5eadevWaXCHUEwzfvx4bePqxscUM5A+Zv198sknn9hixYoFFBBTULNmzeymTZuUfa9du9befffdFnYtU5ryA2VEa3dmJDTy3r17ax9OPv3222/tCy+8YMWVaTdv3uzvhKf45jErTzEpKCjJgANgbdu2tYcPH9YWQkntypUrbcuWLS1sPbm+u+YZ7dDKf/7558AThIjQqVMnNSFhghIDvRWqmuJt/LwVAzPFuvfq1UuBhmnntddeszVr1tRrQAZ1k4CNoBXnrr4DY/iIIR6lJ1yQWe+55x7tU7xCgW2zcePGdv/+/eGq3p7HwEyx9LDXq666Su2UsN3t27erwgLgSpQoYT///HNthffmzTfftIUKFVKFCG3dse4wOK+//nr76aefahtMRrNnz9b6In+qFwhAUh/WjxE/rO2neD0vbsXATLHMaOMffvihxZXoCgBETgRAmHoA7HvvvWerV6+uIJPAYDtz5kyLjRP5smTJkhrEAcWkjShQqqWvWrXKVqxYUQHcuXNni5z58ccf2zx58gR9hymyG9+3YwzMiCuOTNi+fXsFD8Dq37+/LVq0qAIMRengwYMWExOuRijnnXfeqe5IwCqau4IVExLUFaoKtRStX0en3VtvvaVAhjrHEUliFom4Llm2GiBAkQEQo0aNUkUF1tqjRw+lgFu2bLFffvmlFfOQveuuuxSYYTbNOYZ32Dqy40MPPaTKUOvWrVUWxY/epk2bNO2gpN99912Wndfz/WJe2zGFZRsxmps33njDLFq0yHCdXIT6mcKFC+ttYbtGgJxcxUi0kRG2rJHrwvLNF198oXk/ffv2NaKJayR7ckgceUGDBg0yIgoYobg6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nQLfaMw111zuhRde8FGl17g9u+22m9MPKKQ977zzQn169+7tvv322xDHja7Lh3hfv/x1qaWWcvphZvJ15EPlvIvaAqZnZufOnd1hhx3mPvnkk1LexR1ZBEzA8fLLLzsABOA97fjao0cPd99997m//vorU86/BeZnn33mFlxwwVDmUUcdlaFf9BC3h/bz0fiQgOk5MQuvMTDxf1x77bXd1ltvbaPafPPNFzqTuMMPP9x98803hbWJO7IImDNmzHCDBg0Kzr90NqPxhhtu6BjFPEB1WnTff/99poyjjz7abb/99m7bbbd1+GH6tNzzjri2wJZ3JNZp302fPj1TRv4hbg/lrb/++k7FHktWD5h333231Yl60UbaCo1FFlnEbb755hZHO9955518sR32XOkRk+0Kt956q01NX331lVOZzK211loBCDCWeEa/fIg7sgiY3333ndtmm20Cre222846esqUKe74448P75nSJ0+enCEPiMhPnfyUTEczxX755ZcWVwY0dZsrFB1uvvnmTBn5h7g9lKVytjvnnHOs7fWAyUdIffmxRUTlWWufyuxu4sSJ9n7atGkZ8SBf/v/6udLARO5hKo0D0y9TLJ3Db9ddd60Z0Ugfd2QRMBlpt9hii0DnuOOOcz///LN1NB348MMP2+/xxx93dGxRQP7cZ599Ao29997bAby2whNPPOH44Ki7+mbaj3s+DGTeshC3x7edUVOVKFcPmDFNnJg9MNnioUpVHF2Z+5YDJpy79NJLAxiYPpHZ8iHuyCJgMqKpdhvoqOZu0y8j10svvWQgzdPMP7cXmADvpJNOsi0agHLNNdd0K664otWBPUOArCzE7fHAROQYPHiwO+OMM0I7ipSfmGYCZsyNdtzHMmbRiAkpgOgVFjr49ddfrykh7sgiYAIS0vjRy3c2SkmvXr3cAQcc4J5++ukaxScuqL3A/PTTT4P4oKYod/HFF9v0T1uYms8///yYfOY+bo9vO3VW85A76KCDEjAz3JoFD40AE1NR3Dlqp6upSdyRRcAkw08//eTOPvtspza80LEeoAB+9dVXd+PGjauh7V+0F5gPPfRQUJaWX355B1ABJ0od7dlll11qTD2+rLg9Xbt2DbI2+QC5r3caMT3HmnxtBJgTJkwIHVG2RzvuyDJg+qoz4qoB3q288spuscUWC1ornb3ffvuVasztASZp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" alt="Distant Relatives">
   <div class="hdr-controls">
+    <button class="food-btn" id="foodBtn" onclick="openFood()">🍽️ Food</button>
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌎 ES</button>
     <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
     <div class="hdr-badge" id="hdrBadge">…</div>
@@ -224,28 +256,42 @@ body.dark .map-warning{background:#1e2a10;color:var(--text2);}
   <div id="gmap"></div>
 </div>
 
+<footer class="ft">
+  <div id="histNote"></div>
+  <button class="ft-link" id="trackBtn" onclick="toggleTracking()">Turn off usage tracking</button>
+</footer>
+
+<div class="fm" id="foodModal" onclick="if(event.target===this)closeFood()">
+  <div class="fm-box">
+    <div class="fm-head"><span id="fmTitle">Food Schedule</span><button onclick="closeFood()">✕</button></div>
+    <div class="fm-days" id="fmDays"></div>
+    <div id="fmList"></div>
+  </div>
+</div>
+
 <script>
 const DATA=[
-  {name:"Safety / Health Emergency",cats:["Emergency"],phone:"911",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"Safety / Health Emergency",cats:["Emergency"],phone:"911",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"Unconscious, hypothermia"},
   {name:"DBH Community Response Team",cats:["Emergency"],phone:"202-673-6495",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"Mental health crisis"},
-  {name:"Shelter Hotline",cats:["Emergency"],phone:"202-399-7093",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"Emergency shelter placement"},
-  {name:"Youth Shelter Hotline",cats:["Emergency"],phone:"202-547-7777",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Ages 24 & under",lang:"",site:"",notes:""},
+  {name:"Shelter Hotline",cats:["Emergency"],phone:"202-399-7093",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"Transport to shelter / blanket drop-off"},
+  {name:"Youth Shelter Hotline",cats:["Emergency"],phone:"202-547-7777",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Unaccompanied minors, 17 & under",lang:"",site:"",notes:""},
   {name:"Virginia Williams Family Resource Center",cats:["Family Shelter"],phone:"202-547-7777",addr:"920-A Rhode Island Ave NE",hours:"Mon–Fri 8:30am–4pm, Sat 8:30am–12pm",days:["Mon","Tue","Wed","Thu","Fri","Sat"],oH:8.5,cH:16,x:false,who:"Families",lang:"",site:"",notes:""},
   {name:"Bread for the City – Southeast",cats:["Food","Clothing"],phone:"202-561-8587",addr:"1700 Marion Barry Ave SE",hours:"Mon–Thu 9am–5pm, Fri 9am–12pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:9,cH:17,x:false,who:"Everyone",lang:"",site:"",notes:"Email: info@breadforthecity.org"},
   {name:"Bread for the City – Northwest",cats:["Food","Clothing"],phone:"202-265-2400",addr:"1525 7th Street NW",hours:"Mon–Thu 8:30am–5pm, Fri 8:30am–12pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:8.5,cH:17,x:false,who:"Everyone",lang:"",site:"",notes:""},
   {name:"Charlie's Place",cats:["Food"],phone:"202-232-2995",addr:"1830 Connecticut Ave NW",hours:"Tue–Fri 6:30–8:30am, Sat 8–10am",days:["Tue","Wed","Thu","Fri","Sat"],oH:6.5,cH:10,x:false,who:"Everyone",lang:"",site:"",notes:"Breakfast only"},
-  {name:"Thrive DC",cats:["Food","Laundry"],phone:"202-737-9311",addr:"1525 Newton St. NW",hours:"Mon–Fri (call for times)",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Everyone",lang:"Spanish",site:"",notes:"Inside St. Stephen's Church Basement"},
-  {name:"Martha's Table",cats:["Food"],phone:"202-328-6608",addr:"40 New Jersey Ave NW",hours:"Mon–Fri 5–5:30pm & 6–6:15pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:17,cH:18.25,x:false,who:"Everyone",lang:"",site:"",notes:"McKenna's Wagon locations"},
+  {name:"Thrive DC",cats:["Food","Laundry"],phone:"202-737-9311",addr:"1525 Newton St. NW",hours:"Food Mon–Fri 8:30–11am; women & children dinner Mon–Fri 2–5pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:0,cH:0,x:false,who:"Everyone",lang:"Spanish",site:"",notes:"Inside St. Stephen's Church Basement"},
+  {name:"Martha's Table",cats:["Food"],phone:"202-328-6608",addr:"1474 Columbia Rd NW",hours:"Mon–Fri 5–5:30pm (40 New Jersey Ave NW) & 6–6:15pm (I St NW)",days:["Mon","Tue","Wed","Thu","Fri"],oH:17,cH:18.25,x:false,who:"Everyone",lang:"",site:"",notes:"McKenna's Wagon locations"},
   {name:"Miriam's Kitchen",cats:["Food","Supportive Services"],phone:"202-452-8926",addr:"2401 Virginia Ave NW",hours:"Mon–Fri: breakfast 6:30–8am, dinner 4:45–5:45pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:6.5,cH:17.75,x:false,who:"Everyone",lang:"",site:"miriamskitchen.org",notes:"Western Presbyterian Church Basement"},
   {name:"N Street Village",cats:["Food","Laundry","Supportive Services","Health Clinic"],phone:"202-939-2060",addr:"1333 N Street NW",hours:"Mon–Fri: breakfast 7–8am, dinner 4–5pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:7,cH:17,x:false,who:"Women only",lang:"",site:"nstreetvillage.org",notes:""},
+  {name:"N Street Village Health Clinic",cats:["Health Clinic"],phone:"202-508-0500",addr:"1333 N Street NW",hours:"Wed 9am–12pm",days:["Wed"],oH:9,cH:12,x:false,who:"Everyone",lang:"",site:"",notes:""},
   {name:"Sacred Heart Church",cats:["Food"],phone:"202-234-8000",addr:"16th St & Park St NW",hours:"Mon–Sat 4–5pm",days:["Mon","Tue","Wed","Thu","Fri","Sat"],oH:16,cH:17,x:false,who:"Everyone",lang:"Spanish",site:"",notes:"Se habla español"},
-  {name:"SOME (So Others Might Eat)",cats:["Clothing","Supportive Services"],phone:"202-797-8806",addr:"71 O St NW",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:""},
+  {name:"SOME (So Others Might Eat)",cats:["Food","Clothing","Supportive Services"],phone:"202-797-8806",addr:"71 O St NW",hours:"Daily food 7–8:30am & 11am–1pm",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"",notes:"Showers: women 10–10:45am; trans/women 9:15–9:45am"},
   {name:"Father McKenna Center",cats:["Laundry"],phone:"202-842-1112",addr:"900 N. Capitol St. NW",hours:"Mon–Fri 8–10am",days:["Mon","Tue","Wed","Thu","Fri"],oH:8,cH:10,x:false,who:"Men only",lang:"",site:"",notes:""},
   {name:"Georgetown Ministry",cats:["Laundry","Supportive Services"],phone:"202-338-8301",addr:"1041 Wisconsin Ave NW",hours:"Mon–Fri & Sun 8am–4pm",days:["Mon","Tue","Wed","Thu","Fri","Sun"],oH:8,cH:16,x:false,who:"Everyone",lang:"",site:"georgetownministries.org",notes:""},
   {name:"Everyone Home DC",cats:["Laundry"],phone:"202-544-0631",addr:"415 2nd St NE, 3rd Floor",hours:"Call for hours",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"everyonehomedc.org",notes:""},
   {name:"Adams Place",cats:["Supportive Services"],phone:"202-812-5532",addr:"2210 Adams Place NE",hours:"Mon–Fri 7am–7pm",days:["Mon","Tue","Wed","Thu","Fri"],oH:7,cH:19,x:false,who:"Everyone",lang:"",site:"",notes:"Lunch, showers, laundry, clothing, computer lab, SNAP help"},
   {name:"Downtown Day Services Center",cats:["Supportive Services"],phone:"202-383-8810",addr:"1313 New York Ave NW",hours:"Mon–Fri 9am–5pm, Sat–Sun 10am–3pm",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:9,cH:17,x:false,who:"Everyone",lang:"",site:"downtowndc.org",notes:"Lunch, showers, laundry, clothing, computer, legal, healthcare"},
-  {name:"Friendship Place",cats:["Supportive Services","Health Clinic","Veterans","Jobs","Housing"],phone:"202-364-1419",addr:"4713 Wisconsin Ave NW",hours:"Call for hours — varies by program",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"friendshipplace.org",notes:"Multiple programs — call for the right one"},
+  {name:"Friendship Place",cats:["Supportive Services","Health Clinic","Veterans","Jobs","Housing"],phone:"202-364-1419",addr:"4713 Wisconsin Ave NW",hours:"Call for hours — varies by program",days:[],oH:0,cH:0,x:false,who:"Everyone",lang:"",site:"friendshipplace.org",notes:"Health clinic Mon 1–4:30pm. Multiple programs — call for the right one"},
   {name:"H3 Project",cats:["Supportive Services"],phone:"1-833-439-6775",addr:"50 Massachusetts Ave NE",hours:"Daily 8am–10pm",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:8,cH:22,x:false,who:"Everyone",lang:"",site:"h3projectdc.org",notes:"Inside Union Station"},
   {name:"Shirley's Place (EHDC)",cats:["Supportive Services"],phone:"202-544-0631 x202",addr:"1338 G Street SE",hours:"Daily 8am–4pm",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:8,cH:16,x:false,who:"Everyone",lang:"",site:"everyonehomedc.org",notes:""},
   {name:"DC Victim Hotline",cats:["Domestic Violence & Trafficking"],phone:"1-844-432-2873",addr:"",hours:"24/7",days:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],oH:0,cH:24,x:true,who:"Everyone",lang:"",site:"",notes:"24/7 DV hotline"},
@@ -323,7 +369,10 @@ const TX = {
     btn:{call:"📞 Call",dir:"🗺️ Directions",web:"🌐 Website"},
     tag:{sp:"🌎 Spanish",wo:"👩 Women",ve:"🎖️ Veterans",lg:"🏳️‍🌈 LGBTQ+",im:"🌍 Immigrants"},
     catNames:{"Emergency":"Emergency","Family Shelter":"Family Shelter","Food":"Food","Clothing":"Clothing","Laundry":"Laundry","Supportive Services":"Support","Domestic Violence & Trafficking":"DV & Safety","Special Services":"Special Svcs","Immigration Legal":"Immigration","Mental Health / Substance Abuse":"Mental Health","Health Clinic":"Health","Youth Services":"Youth","Veterans":"Veterans","Jobs":"Jobs","Housing":"Housing","__all__":"Clear"},
-    days:{All:"Any",Mon:"Mon",Tue:"Tue",Wed:"Wed",Thu:"Thu",Fri:"Fri",Sat:"Sat",Sun:"Sun"}
+    days:{All:"Any",Mon:"Mon",Tue:"Tue",Wed:"Wed",Thu:"Thu",Fri:"Fri",Sat:"Sat",Sun:"Sun"},
+    qx:"Quick Exit", food:"Food", fmTitle:"Food Schedule", fmEmpty:"No food sites listed for this day.",
+    histNote:"Using a shared or public device? Clear your browser history after you visit.",
+    trackOff:"Turn off usage tracking", trackOn:"Turn tracking back on",
   },
   es:{
     heroEye:"Programa Empoderando a Nuestros Familiares",
@@ -341,7 +390,10 @@ const TX = {
     btn:{call:"📞 Llamar",dir:"🗺️ Cómo Llegar",web:"🌐 Sitio Web"},
     tag:{sp:"🌎 Español",wo:"👩 Mujeres",ve:"🎖️ Veteranos",lg:"🏳️‍🌈 LGBTQ+",im:"🌍 Inmigrantes"},
     catNames:{"Emergency":"Emergencia","Family Shelter":"Refugio Familiar","Food":"Comida","Clothing":"Ropa","Laundry":"Lavandería","Supportive Services":"Apoyo","Domestic Violence & Trafficking":"VD y Tráfico","Special Services":"Servicios Esp.","Immigration Legal":"Inmigración","Mental Health / Substance Abuse":"Salud Mental","Health Clinic":"Clínica","Youth Services":"Jóvenes","Veterans":"Veteranos","Jobs":"Empleos","Housing":"Vivienda","__all__":"Borrar"},
-    days:{All:"Todos",Mon:"Lun",Tue:"Mar",Wed:"Mié",Thu:"Jue",Fri:"Vie",Sat:"Sáb",Sun:"Dom"}
+    days:{All:"Todos",Mon:"Lun",Tue:"Mar",Wed:"Mié",Thu:"Jue",Fri:"Vie",Sat:"Sáb",Sun:"Dom"},
+    qx:"Salida rápida", food:"Comida", fmTitle:"Horario de Comida", fmEmpty:"No hay sitios de comida para este día.",
+    histNote:"¿Usas un dispositivo compartido o público? Borra el historial de tu navegador después de usar este sitio.",
+    trackOff:"Desactivar el seguimiento de uso", trackOn:"Activar el seguimiento de nuevo",
   }
 };
 
@@ -349,7 +401,7 @@ const CAT_ICON={"Emergency":"🚨","Family Shelter":"👨‍👩‍👧","Food":
 const CAT_ORDER=["Food","Clothing","Laundry","Housing","Emergency","Health Clinic","Jobs","Mental Health / Substance Abuse","Supportive Services","Domestic Violence & Trafficking","Immigration Legal","Special Services","Youth Services","Veterans","Family Shelter"];
 const DAYS_ORDER=["All","Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 
-// ── STATE — multi-select ──────────────────────────────────────
+// ── STATE ─────────────────────────────────────────────────────
 let activeCats=new Set(), activeDays=new Set(),
     openOnly=false, lang="en", dark=false, currentView="list";
 
@@ -377,6 +429,7 @@ function toggleTheme(){
 
 // ── LANGUAGE ──────────────────────────────────────────────────
 function toggleLang(){
+  drEvent('language_toggle');
   lang=lang==='en'?'es':'en';
   const b=document.getElementById('langBtn');
   b.textContent=lang==='en'?'🌎 ES':'🌎 EN';
@@ -389,11 +442,15 @@ function applyLang(){
   const map={heroEye:t.heroEye,heroP:t.heroP,catLabel:t.catLabel,dayLabel:t.dayLabel,
     timeLabel:t.timeLabel,fromLbl:t.fromLbl,toLbl:t.toLbl,foundTxt:t.foundTxt,
     clrBtn:t.clrBtn,emptyH:t.emptyH,emptyP:t.emptyP,loadingTxt:t.loadingTxt,
-    listLbl:t.listLbl,mapLbl:t.mapLbl,mapWarning:t.mapWarning};
+    listLbl:t.listLbl,mapLbl:t.mapLbl,mapWarning:t.mapWarning,
+    qxBtn:t.qx,histNote:t.histNote,fmTitle:t.fmTitle};
   for(const[id,val]of Object.entries(map)){const el=document.getElementById(id);if(el)el.textContent=val;}
   document.getElementById('heroH1').innerHTML=t.heroH1;
   document.getElementById('openTxt').textContent=openOnly?t.openOn:t.openOff;
   document.getElementById('srch').placeholder=t.srchPh;
+  document.getElementById('foodBtn').textContent='🍽️ '+t.food;
+  document.getElementById('trackBtn').textContent=localStorage.getItem('drTracking')==='off'?t.trackOn:t.trackOff;
+  if(document.getElementById('foodModal').classList.contains('on'))renderFood();
 }
 
 // ── BUILD FILTERS ─────────────────────────────────────────────
@@ -401,11 +458,9 @@ function buildUI(){
   const t=TX[lang];
   const all=new Set(); DATA.forEach(r=>r.cats.forEach(c=>all.add(c)));
   const sorted=[...CAT_ORDER.filter(c=>all.has(c)),...[...all].filter(c=>!CAT_ORDER.includes(c))];
-  // category grid — multi select, plus clear button
   document.getElementById('catGrid').innerHTML=
     sorted.map(c=>`<button class="cat-btn${activeCats.has(c)?' on':''}" data-cat="${c}" onclick="toggleCat(this)"><span class="ci">${CAT_ICON[c]||'📍'}</span><span class="cl">${t.catNames[c]||c}</span></button>`).join('')+
     `<button class="cat-btn${activeCats.size===0?' on':''}" data-cat="__all__" onclick="clearCats()"><span class="ci">✨</span><span class="cl">${t.catNames['__all__']}</span></button>`;
-  // day row — multi select, All = none selected
   document.getElementById('dayRow').innerHTML=
     DAYS_ORDER.map(d=>{
       const isAll=d==='All', isOn=isAll?(activeDays.size===0):activeDays.has(d);
@@ -415,6 +470,7 @@ function buildUI(){
 
 // ── FILTER ACTIONS ────────────────────────────────────────────
 function toggleCat(btn){
+  drEvent('filter_change');
   const c=btn.dataset.cat;
   if(activeCats.has(c)) activeCats.delete(c); else activeCats.add(c);
   buildUI(); render();
@@ -422,6 +478,7 @@ function toggleCat(btn){
 function clearCats(){activeCats.clear();buildUI();render();}
 
 function toggleDay(btn){
+  drEvent('filter_change');
   const d=btn.dataset.day;
   if(d==='All'){activeDays.clear();}
   else{if(activeDays.has(d))activeDays.delete(d);else activeDays.add(d);}
@@ -429,6 +486,7 @@ function toggleDay(btn){
 }
 
 function toggleOpen(){
+  drEvent('filter_change');
   openOnly=!openOnly;
   document.getElementById('openToggle').classList.toggle('on',openOnly);
   document.getElementById('openTxt').textContent=openOnly?TX[lang].openOn:TX[lang].openOff;
@@ -452,24 +510,18 @@ function getFiltered(){
   const toH=timeStrToH(document.getElementById('timeTo').value);
 
   let list=DATA.filter(r=>{
-    // Category: multi-select OR (none selected = show all)
     if(activeCats.size>0 && !r.cats.some(c=>activeCats.has(c))) return false;
-    // Day: multi-select. callhrs resources always pass day filter
     if(activeDays.size>0){
       const st=getStatus(r);
       if(st!=='callhrs' && !r.days.some(d=>activeDays.has(d))) return false;
     }
-    // Open Now
     if(openOnly){const st=getStatus(r);if(st!=='always'&&st!=='open')return false;}
-    // Time filter: show resource if its hours overlap with the requested window
     if(fromH!==null||toH!==null){
-      // callhrs / 24-7 resources always pass time filter
       if(!r.x&&r.oH!==0&&r.cH!==0){
-        if(fromH!==null&&r.cH<=fromH) return false; // closes before from
-        if(toH!==null&&r.oH>=toH) return false;     // opens after to
+        if(fromH!==null&&r.cH<=fromH) return false;
+        if(toH!==null&&r.oH>=toH) return false;
       }
     }
-    // Search
     if(q){
       const hay=r.name.toLowerCase()+' '+(r.notes||'').toLowerCase()+' '+r.cats.join(' ').toLowerCase()+' '+(r.who||'').toLowerCase();
       if(!hay.includes(q)) return false;
@@ -477,7 +529,6 @@ function getFiltered(){
     return true;
   });
 
-  // When no category filter active: sort food first
   if(activeCats.size===0){
     list.sort((a,b)=>{
       const aFood=a.cats.includes('Food')?0:1;
@@ -498,9 +549,7 @@ function setView(v){
   if(v==='map') renderMap(getFiltered());
 }
 
-// ── GOOGLE MAPS EMBED ─────────────────────────────────────────
-// Uses free Google Maps embed (no API key needed for basic embed)
-// Falls back to Leaflet with OSM if iframe doesn't work
+// ── MAP ───────────────────────────────────────────────────────
 const GEOCODE = {
   "1700 Marion Barry Ave SE":[38.8724,-76.9901],
   "1525 7th Street NW":[38.9109,-77.0219],
@@ -577,7 +626,6 @@ function buildLeaflet(orgs){
   window._drMap=map;
   window.L.tileLayer(tile,{attribution:'© <a href="https://www.openstreetmap.org">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',subdomains:'abcd',maxZoom:19}).addTo(map);
 
-  // Small aesthetic dot pin
   function makeIcon(color){
     return window.L.divIcon({
       className:'',
@@ -629,8 +677,8 @@ function render(){
   emp.style.display='none';
   const bl=t.btn,tl=t.tag,bdg=t.badge,CL=t.catNames;
   wrap.innerHTML=list.map(r=>{
+    const i=DATA.indexOf(r);
     const st=getStatus(r),bt=bdg[st];
-    // All services as chips — highlight active ones in green
     const svcsHtml=r.cats.map(c=>{
       const isActive=activeCats.has(c);
       return `<span class="svc-chip${isActive?' active':''}">${CAT_ICON[c]||''} ${CL[c]||c}</span>`;
@@ -661,12 +709,70 @@ function render(){
       </div>
       ${tags?`<div class="tags">${tags}</div>`:''}
       ${hasA?`<div class="actions">
-        ${r.phone&&r.phone!=='No phone'?`<a class="abtn call" href="tel:${r.phone}">${bl.call}</a>`:''}
-        ${mu?`<a class="abtn dir" href="${mu}" target="_blank">${bl.dir}</a>`:''}
-        ${su?`<a class="abtn web" href="${su}" target="_blank">${bl.web}</a>`:''}
+        ${r.phone&&r.phone!=='No phone'?`<a class="abtn call" href="tel:${r.phone}" onclick="drTrack('call',${i})">${bl.call}</a>`:''}
+        ${mu?`<a class="abtn dir" href="${mu}" target="_blank" onclick="drTrack('directions',${i})">${bl.dir}</a>`:''}
+        ${su?`<a class="abtn web" href="${su}" target="_blank" onclick="drTrack('website',${i})">${bl.web}</a>`:''}
       </div>`:''}
     </div>`;
   }).join('');
+}
+
+// ── TRACKING (GA4) ────────────────────────────────────────────
+// Sensitive categories (DV and immigration) send only a generic event: no org name, no category.
+const SENSITIVE=["Domestic Violence & Trafficking","Immigration Legal"];
+function drEvent(name,params){ if(typeof gtag==='function') gtag('event',name,params||{}); }
+function drTrack(action,idx){
+  const r=DATA[idx];
+  if(r.cats.some(c=>SENSITIVE.includes(c))) drEvent('resource_click',{action:action});
+  else drEvent('resource_click',{action:action,org:r.name,category:r.cats[0]});
+}
+function toggleTracking(){
+  const off=localStorage.getItem('drTracking')==='off';
+  localStorage.setItem('drTracking',off?'on':'off');
+  if(typeof gtag==='function') gtag('consent','update',{analytics_storage:off?'granted':'denied'});
+  applyLang();
+}
+
+// ── FOOD SCHEDULE POPUP ───────────────────────────────────────
+const FOOD_DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+// Orgs with two meal windows: each window gets its own line
+const MEALS={
+  "Martha's Table":[{t:"5–5:30pm",a:"40 New Jersey Ave NW"},{t:"6–6:15pm",a:"I St NW"}],
+  "Miriam's Kitchen":[{t:"Breakfast 6:30–8am",a:"2401 Virginia Ave NW"},{t:"Dinner 4:45–5:45pm",a:"2401 Virginia Ave NW"}],
+  "Thrive DC":[{t:"Food 8:30–11am",a:"1525 Newton St NW"},{t:"Women & children dinner 2–5pm",a:"1525 Newton St NW"}],
+  "SOME (So Others Might Eat)":[{t:"7–8:30am",a:"71 O St NW"},{t:"11am–1pm",a:"71 O St NW"}]
+};
+let fmDay="Mon";
+function openFood(){
+  const today=todayD();
+  fmDay=FOOD_DAYS.includes(today)?today:"Mon";
+  drEvent('food_schedule_open');
+  document.getElementById('foodModal').classList.add('on');
+  renderFood();
+}
+function closeFood(){document.getElementById('foodModal').classList.remove('on');}
+function setFoodDay(d){fmDay=d;renderFood();}
+function renderFood(){
+  const t=TX[lang];
+  document.getElementById('fmDays').innerHTML=FOOD_DAYS.map(d=>
+    `<button class="fm-dbtn${d===fmDay?' on':''}" onclick="setFoodDay('${d}')">${t.days[d]}</button>`).join('');
+  let html='';
+  DATA.forEach((r,i)=>{
+    if(!r.cats.includes('Food')) return;
+    if(r.days.length && !r.days.includes(fmDay)) return;
+    const windows=MEALS[r.name]||[{t:r.days.length?r.hours:'Call for hours',a:r.addr}];
+    windows.forEach(w=>{
+      const mapUrl=w.a?`https://maps.google.com/?q=${encodeURIComponent(w.a+' Washington DC')}`:'';
+      html+=`<div class="fm-row">
+        <div class="fm-name">${r.name}</div>
+        <div class="fm-time">🕐 ${w.t}</div>
+        <div class="fm-links">
+          ${mapUrl?`<a href="${mapUrl}" target="_blank" onclick="drTrack('directions',${i})">📍 ${t.btn.dir}</a>`:''}
+          ${r.phone?`<a href="tel:${r.phone}" onclick="drTrack('call',${i})">📞 ${t.btn.call.replace('📞 ','')}</a>`:''}
+        </div></div>`;
+    });
+  });
+  document.getElementById('fmList').innerHTML=html||`<div class="fm-empty">${t.fmEmpty}</div>`;
 }
 
 // ── INIT ──────────────────────────────────────────────────────
