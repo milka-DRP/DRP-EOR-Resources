@@ -621,10 +621,10 @@ function buildLeaflet(orgs){
   if(!container)return;
   if(container._leaflet_id){try{window._drMap&&window._drMap.remove();}catch(e){}}
   const isDark=document.body.classList.contains('dark');
-  const tile=isDark?'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png':'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+  const tile='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
   const map=window.L.map('leafmap',{zoomControl:true,scrollWheelZoom:true}).setView([38.9072,-77.0369],12);
   window._drMap=map;
-  window.L.tileLayer(tile,{attribution:'© <a href="https://www.openstreetmap.org">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',subdomains:'abcd',maxZoom:19}).addTo(map);
+  window.L.tileLayer(tile,{attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:19}).addTo(map);
 
   function makeIcon(color){
     return window.L.divIcon({
